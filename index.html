@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MATH2016 Test 2 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    macros: {
+      R: '\\mathbb{R}', N: '\\mathbb{N}', Q: '\\mathbb{Q}',
+      Lf: 'L(P,f)', Uf: 'U(P,f)',
+      lowint: '\\underline{\\int}_a^b', upint: '\\overline{\\int}_a^b'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<style>
+/* Layout: sticky topic index on the left, one reading column on the right.
+   Red always means lower sums, blue always means upper sums, amber marks exam traps. */
+:root {
+  --paper: #F1F4F7; --surface: #FFFFFF; --ink: #111B26; --ink2: #46566A;
+  --rule: #D5DDE5; --faint: #E4EAF0;
+  --lower: #C23B3B; --upper: #2D5AD1; --mark: #B7860B;
+  --t-lower: #FBE9E9; --t-upper: #E8EEFC; --t-mark: #FBF1D2;
+  --btn: #111B26; --btnfg: #F1F4F7;
+  --fd: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --fb: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fm: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1319; --surface: #141C25; --ink: #E7EEF5; --ink2: #9EB0C2;
+    --rule: #27333F; --faint: #1B2530;
+    --lower: #FF8585; --upper: #86A8FF; --mark: #E8BE4A;
+    --t-lower: #2B1A1C; --t-upper: #16213A; --t-mark: #2D2612;
+    --btn: #E7EEF5; --btnfg: #0D1319;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1319; --surface: #141C25; --ink: #E7EEF5; --ink2: #9EB0C2;
+  --rule: #27333F; --faint: #1B2530;
+  --lower: #FF8585; --upper: #86A8FF; --mark: #E8BE4A;
+  --t-lower: #2B1A1C; --t-upper: #16213A; --t-mark: #2D2612;
+  --btn: #E7EEF5; --btnfg: #0D1319;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 1.0625rem/1.62 var(--fb);
+  padding-inline: clamp(16px, 4vw, 40px); padding-block: 0 4rem;
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+p { margin: 0 0 1rem; max-width: 68ch; }
+a { color: var(--upper); }
+:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; }
+
+/* header */
+.top { max-width: 1180px; margin: 0 auto; padding-block: 2rem 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 2rem; align-items: end; border-bottom: 2px solid var(--ink); }
+.tag { font: 600 .74rem/1.4 var(--fm); letter-spacing: .09em; text-transform: uppercase; color: var(--ink2); margin: 0 0 .9rem; max-width: none; }
+h1 { font: 600 clamp(2.3rem, 6.4vw, 4rem)/1 var(--fd); letter-spacing: -.015em; margin: 0 0 1rem; text-wrap: balance; }
+.sub { color: var(--ink2); margin: 0; max-width: 52ch; }
+.hero-art { width: 100%; height: auto; display: block; }
+.topbar { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; padding-block: .75rem; font: 600 .78rem var(--fm); letter-spacing: .04em; }
+.count { background: var(--ink); color: var(--paper); padding: .3rem .6rem; }
+.btn { font: 600 .8rem var(--fb); background: var(--btn); color: var(--btnfg); border: 0; padding: .55rem .9rem; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn:hover { opacity: .88; }
+
+/* shell */
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+@media (min-width: 960px) { .wrap { grid-template-columns: 250px minmax(0, 1fr); gap: 3.5rem; } }
+aside { min-width: 0; }
+@media (min-width: 960px) { aside { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; max-height: 100dvh; overflow: auto; padding-block: 1rem; } }
+details.navd > summary { cursor: pointer; font: 600 .85rem var(--fm); letter-spacing: .06em; text-transform: uppercase; padding: .75rem 0; list-style: none; }
+details.navd > summary::-webkit-details-marker { display: none; }
+details.navd > summary::after { content: " +"; }
+details.navd[open] > summary::after { content: " –"; }
+@media (min-width: 960px) { details.navd > summary { display: none; } }
+.navwk { font: 600 .7rem var(--fm); letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); margin: 1.1rem 0 .3rem; padding-top: .8rem; border-top: 1px solid var(--rule); }
+#toc a { display: flex; justify-content: space-between; gap: .5rem; text-decoration: none; color: var(--ink); font-size: .95rem; padding: .22rem 0; border-bottom: 1px solid transparent; }
+#toc a:hover { border-bottom-color: var(--ink2); }
+#toc a.cur { font-weight: 700; border-bottom-color: var(--ink); }
+#toc a.done::after { content: "✓"; color: var(--upper); font-weight: 700; }
+.prog { font: 400 .78rem var(--fm); color: var(--ink2); margin: .2rem 0 .6rem; }
+.bar { height: 4px; background: var(--faint); margin-bottom: .4rem; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--ink); }
+
+main { min-width: 0; max-width: 760px; }
+section.topic { padding-block: 2.2rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
+.wk { font: 600 .74rem var(--fm); letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); margin: 0 0 .3rem; }
+h2 { font: 600 clamp(1.7rem, 4.4vw, 2.3rem)/1.1 var(--fd); letter-spacing: -.01em; margin: 0 0 1.1rem; text-wrap: balance; }
+h3 { font: 700 .76rem var(--fm); letter-spacing: .11em; text-transform: uppercase; color: var(--ink2); margin: 2.2rem 0 .8rem; }
+.lead { font-size: 1.2rem; line-height: 1.5; }
+ul, ol { padding-left: 1.3rem; max-width: 68ch; margin: 0 0 1rem; }
+li { margin-bottom: .35rem; }
+
+/* boxes */
+.box { position: relative; border: 1.5px solid var(--ink); background: var(--surface); padding: 1.3rem 1rem .8rem; margin: 1.8rem 0 1.3rem; --tagbg: var(--ink); --tagfg: var(--paper); }
+.box::before { content: attr(data-tag); position: absolute; top: -.8em; left: .8rem; background: var(--tagbg); color: var(--tagfg); font: 600 .7rem/1 var(--fm); letter-spacing: .09em; text-transform: uppercase; padding: .35rem .55rem; }
+.box > :last-child { margin-bottom: .3rem; }
+.box.thm { background: var(--t-upper); border-color: var(--upper); --tagbg: var(--upper); --tagfg: var(--paper); }
+.box.trap { background: var(--t-mark); border-color: var(--mark); --tagbg: var(--mark); --tagfg: var(--paper); }
+.box.ex { border-style: dashed; }
+.box.idea { background: transparent; border-color: var(--rule); --tagbg: var(--ink2); }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; margin: .8rem 0 !important; }
+.steps { counter-reset: st; list-style: none; padding: 0; max-width: none; }
+.steps > li { counter-increment: st; position: relative; padding-left: 2.1rem; margin-bottom: .8rem; }
+.steps > li::before { content: counter(st); position: absolute; left: 0; top: .12em; width: 1.45rem; height: 1.45rem; background: var(--ink); color: var(--paper); font: 600 .75rem/1.45rem var(--fm); text-align: center; }
+.tbl { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; min-width: 100%; font-size: .96rem; }
+th, td { border: 1px solid var(--rule); padding: .4rem .7rem; text-align: left; white-space: nowrap; }
+th { background: var(--faint); font: 600 .72rem var(--fm); letter-spacing: .06em; text-transform: uppercase; }
+.lo { color: var(--lower); font-weight: 700; }
+.up { color: var(--upper); font-weight: 700; }
+
+/* questions */
+.qs { counter-reset: q; }
+.q { counter-increment: q; border-top: 1px solid var(--rule); padding: .9rem 0 .4rem; }
+.q > .qt { margin-bottom: .5rem; }
+.q > .qt::before { content: counter(q) ". "; font: 600 .85rem var(--fm); color: var(--ink2); }
+details.a > summary { cursor: pointer; font: 600 .78rem var(--fm); letter-spacing: .06em; text-transform: uppercase; color: var(--upper); padding: .2rem 0; }
+details.a[open] > summary { margin-bottom: .5rem; }
+.ans { padding: .7rem .9rem .3rem; background: var(--faint); margin-bottom: .6rem; }
+.ans > :last-child { margin-bottom: .4rem; }
+.mk { font: 600 .72rem var(--fm); color: var(--ink2); }
+
+/* cloze */
+.cz { display: inline-block; background: var(--faint); color: transparent; border-bottom: 2px solid var(--mark); cursor: pointer; padding: 0 .2em; min-width: 3em; user-select: none; }
+.cz.on { background: transparent; color: inherit; user-select: auto; }
+.proofbar { display: flex; gap: .6rem; align-items: center; margin: 0 0 .8rem; font: 400 .82rem var(--fm); color: var(--ink2); flex-wrap: wrap; }
+
+/* drills */
+.drill { border-top: 1px solid var(--rule); }
+.drill > summary { cursor: pointer; padding: .7rem 0; font-weight: 700; }
+.drill > div { padding: 0 0 .8rem; }
+
+/* explorer */
+.xp { background: var(--surface); border: 1.5px solid var(--ink); padding: 1rem; margin: 1rem 0; }
+.ctl { display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: end; margin-bottom: .8rem; }
+.ctl label { display: grid; gap: .25rem; font: 600 .74rem var(--fm); letter-spacing: .05em; text-transform: uppercase; color: var(--ink2); min-width: 0; }
+.ctl select, .ctl input[type=range] { font: 400 .95rem var(--fb); max-width: 100%; }
+.ctl select { padding: .4rem; background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); }
+#plot { width: 100%; height: auto; display: block; background: var(--paper); border: 1px solid var(--rule); }
+#plot .ru { fill: var(--upper); fill-opacity: .16; stroke: var(--upper); stroke-width: 1.4; }
+#plot .rl { fill: var(--lower); fill-opacity: .34; stroke: var(--lower); stroke-width: 1.2; }
+#plot .cv { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+#plot .ax { stroke: var(--ink2); stroke-width: 1; }
+#plot text { fill: var(--ink2); font: 12px var(--fm); }
+#plot circle.pt { fill: var(--ink); }
+#plot circle.op { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .6rem; margin: .9rem 0 .4rem; }
+.read > div { border: 1px solid var(--rule); padding: .5rem .6rem; min-width: 0; }
+.read b { display: block; font: 600 .68rem var(--fm); letter-spacing: .08em; text-transform: uppercase; color: var(--ink2); }
+.read span { font: 600 1.1rem var(--fm); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.msg { font-size: .94rem; color: var(--ink2); min-height: 1.5em; max-width: none; }
+
+/* mock */
+.timer { font: 600 2rem var(--fm); font-variant-numeric: tabular-nums; }
+.done-row { margin-top: 1.8rem; }
+.done-btn[aria-pressed="true"] { background: var(--upper); color: var(--paper); }
+footer { max-width: 1180px; margin: 2rem auto 0; color: var(--ink2); font-size: .88rem; }
+@media (max-width: 700px) { .top { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div>
+    <p class="tag">MATH2016 · Tutorial Test 2 · Wed 14 Oct 2026 · 15:30 · Flower Hall · 30 min</p>
+    <h1>Riemann sums, derivatives and Taylor</h1>
+    <p class="sub">Weeks 7 to 9. Every concept in plain words, every class example worked in small steps, then short questions in the style of Test 1. No appendix in the test, so the statements must come from memory.</p>
+  </div>
+  <svg class="hero-art" id="hero" viewBox="0 0 340 150" role="img" aria-label="Lower sums in red and upper sums in blue under a rising curve"></svg>
+</header>
+<div class="topbar">
+  <span class="count" id="count">Test in 5 days</span>
+  <span>Scope: Weeks 7 to 9 · short-form answers</span>
+  <button class="btn ghost" id="theme" type="button">Theme: auto</button>
+</div>
+
+<div class="wrap">
+<aside>
+  <details class="navd" id="navd" open>
+    <summary>Topics</summary>
+    <p class="prog" id="prog">0 of 0 topics marked done</p>
+    <div class="bar"><i id="barfill"></i></div>
+    <nav id="toc" aria-label="Topics"></nav>
+  </details>
+</aside>
+
+<main>
+
+<!-- ============ START ============ -->
+<section class="topic" id="start" data-wk="Start" data-title="Start here">
+  <h2>Start here</h2>
+  <p class="lead">Weeks 7 and 8 build the Riemann integral from rectangles. Week 9 returns to derivatives and ends with Taylor's theorem.</p>
+
+  <h3>The storyline</h3>
+  <ol>
+    <li>Cut \([a,b]\) into pieces. That is a partition.</li>
+    <li>On each piece take the lowest and the highest value of \(f\). Add up the rectangles. That gives a lower sum \(L\) and an upper sum \(U\).</li>
+    <li>Adding cut points pushes \(L\) up and \(U\) down. So every lower sum is at most every upper sum.</li>
+    <li>Take the sup of the lower sums and the inf of the upper sums. If they are equal, \(f\) is Riemann integrable and that number is the integral.</li>
+    <li>To prove integrability, show \(U-L&lt;\varepsilon\) for a good partition, for every \(\varepsilon>0\).</li>
+    <li>Week 9: derivatives have the intermediate value property (Darboux). The sign of \(f'\) locates extrema. Taylor polynomials approximate \(f\) with an error you can bound.</li>
+  </ol>
+
+  <h3>What the test looks like</h3>
+  <p>Test 1 asked for one precise definition, one proof with blanks to complete, one theorem to name, one short computation and one sequence argument. Expect the same mix. The <a href="#recall">Recall drills</a> and the <a href="#mock">Mock test</a> train exactly that.</p>
+
+  <div class="box trap" data-tag="Where marks went in Test 1">
+    <ul>
+      <li>Quantifiers. Write "for every \(\varepsilon>0\) there exists \(\delta>0\)", not a loose version.</li>
+      <li>Domains. Write \(f:[1,2]\to\R\) when you define \(f\).</li>
+      <li>Theorem names. The Extreme Value Theorem (attains a max and min) and Bolzano's Intermediate Value Theorem are different results. Mixing them cost the mark.</li>
+      <li>Say which result you use at each step.</li>
+    </ul>
+  </div>
+
+  <h3>Pairs to keep apart</h3>
+  <ul>
+    <li>Lower Darboux integral \(=\sup\) of lower sums. Upper Darboux integral \(=\inf\) of upper sums.</li>
+    <li>An integral is a number (an area). An antiderivative is a function \(F\) with \(F'=f\). They are not the same thing.</li>
+    <li>Bolzano's IVT: a continuous \(f\) takes every value between \(f(a)\) and \(f(b)\). Darboux's theorem: a derivative \(f'\) takes every value between \(f'(a)\) and \(f'(b)\).</li>
+    <li>Absolute extremum: best on the whole domain. Local (relative) extremum: best on some small open interval.</li>
+    <li>The second derivative test says nothing when \(f''(x_0)=0\).</li>
+  </ul>
+
+  <h3>Five days to Wednesday</h3>
+  <ul>
+    <li><b>Sat 10 Oct.</b> Week 7: partitions, sums, bounds, integrals, refinements. Play with the explorer.</li>
+    <li><b>Sun 11 Oct.</b> Week 8: integrable, constant, step function, integrability condition, \(1/(1+x)\).</li>
+    <li><b>Mon 12 Oct.</b> Week 9 part 1: Darboux's theorem and the first derivative test. Redo Week 7 and 8 drills.</li>
+    <li><b>Tue 13 Oct.</b> Taylor and the second derivative test. Sit the mock test under the timer. Extra topic only if time remains.</li>
+    <li><b>Wed 14 Oct.</b> Morning: Recall drills only. No new material.</li>
+  </ul>
+  <p class="msg">Scope note: the "Properties of the integral" topic comes from your handwritten pages. It is probably later than Week 9, so it sits in an Extra group after Week 9. Ask your lecturer or check the slides before spending time on it.</p>
+</section>
+
+<!-- ============ WEEK 7 ============ -->
+<section class="topic" id="partitions" data-wk="Week 7" data-title="Partitions" data-track="1">
+  <p class="wk">Week 7</p>
+  <h2>Partitions</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A partition is a way of chopping the interval \([a,b]\) into smaller intervals. You choose the cut points. Everything later (the sums, the integral) is built on a partition.</p>
+  </div>
+
+  <div class="box" data-tag="Definition">
+    <p>A <b>partition</b> \(P\) of \([a,b]\) is a finite set \(P=\{x_0,x_1,\dots,x_n\}\) with
+    \[a=x_0&lt;x_1&lt;x_2&lt;\dots&lt;x_{n-1}&lt;x_n=b.\]
+    Write \(\Delta x_i = x_i-x_{i-1}\) for \(i=1,\dots,n\).</p>
+  </div>
+  <p>Three facts to use without thinking.</p>
+  <ul>
+    <li>Both endpoints \(a\) and \(b\) belong to \(P\).</li>
+    <li>Each \(\Delta x_i>0\), because the points are strictly increasing.</li>
+    <li>The widths add up to the length. The sum telescopes:
+    \[\sum_{i=1}^{n}\Delta x_i=(x_1-x_0)+(x_2-x_1)+\dots+(x_n-x_{n-1})=x_n-x_0=b-a.\]</li>
+  </ul>
+  <p>\(P\) is a <i>set</i>. A set has no repeated points, so the points are listed once. This is why the notes say the points are "all distinct": we need to know exactly how many pieces there are.</p>
+  <div class="box trap" data-tag="Indexing">
+    <p>Your handwritten notes index the points \(x_1,\dots,x_n\) and sum from \(j=2\). The typed notes use \(x_0,\dots,x_n\) and sum from \(i=1\). Both describe the same thing. In the test, copy the convention in the question.</p>
+  </div>
+
+  <h3>Uniform partitions (you must be able to build these)</h3>
+  <p>Split \([a,b]\) into \(n\) equal pieces. Then
+  \[x_i=a+i\,\frac{b-a}{n},\qquad \Delta x_i=\frac{b-a}{n}.\]</p>
+
+  <div class="box ex" data-tag="Worked example">
+    <p>Partition \([0,3]\) into \(n=6\) equal pieces.</p>
+    <ol class="steps">
+      <li>Width: \(\Delta x=\dfrac{3-0}{6}=\dfrac12\).</li>
+      <li>Points: \(x_i=i/2\) for \(i=0,\dots,6\). So \(P=\{0,\tfrac12,1,\tfrac32,2,\tfrac52,3\}\).</li>
+      <li>Check: \(6\cdot\tfrac12=3=b-a\). &#10003;</li>
+    </ol>
+    <p>For \([0,1]\): \(n=2\) gives \(\{0,\tfrac12,1\}\), \(n=3\) gives \(\{0,\tfrac13,\tfrac23,1\}\), \(n=4\) gives \(\{0,\tfrac14,\tfrac12,\tfrac34,1\}\).</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">Write the uniform partition of \([1,3]\) with \(n=4\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\Delta x=\tfrac{3-1}{4}=\tfrac12\). So \(P=\{1,\tfrac32,2,\tfrac52,3\}\).</p></div></details></div>
+    <div class="q"><p class="qt">Is \(\{0.2,0.5,1\}\) a partition of \([0,1]\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>No. The left endpoint \(0\) is missing, so \(x_0\ne a\).</p></div></details></div>
+    <div class="q"><p class="qt">Is \(\{0,\tfrac12,\tfrac12,1\}\) a partition of \([0,1]\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>As a set it equals \(\{0,\tfrac12,1\}\), which is a partition. Written as a list with \(\tfrac12\) twice it breaks the strict inequalities, so we list each point once.</p></div></details></div>
+    <div class="q"><p class="qt">A uniform partition of \([2,7]\) has \(n\) pieces. What is \(\Delta x_i\), and what is \(\sum\Delta x_i\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\Delta x_i=5/n\) and \(\sum\Delta x_i=7-2=5\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="sums" data-wk="Week 7" data-title="Lower and upper sums" data-track="1">
+  <p class="wk">Week 7</p>
+  <h2>Lower and upper sums</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>On each small piece, look at how low and how high \(f\) goes. Build one rectangle whose height is the lowest value (it fits <span class="lo">under</span> the graph) and one whose height is the highest value (it reaches <span class="up">over</span> the graph). Add up the areas. That is a lower sum and an upper sum.</p>
+  </div>
+
+  <div class="box" data-tag="Definition">
+    <p>Let \(f:[a,b]\to\R\) be bounded and \(P=\{x_0,\dots,x_n\}\) a partition. For \(i=1,\dots,n\) define
+    \[m_i=\inf\{f(x):x_{i-1}\le x\le x_i\},\qquad M_i=\sup\{f(x):x_{i-1}\le x\le x_i\}.\]
+    The <b class="lo">lower sum</b> and <b class="up">upper sum</b> are
+    \[L(P,f)=\sum_{i=1}^{n}m_i\,\Delta x_i,\qquad U(P,f)=\sum_{i=1}^{n}M_i\,\Delta x_i.\]</p>
+  </div>
+  <p>Why inf and sup, not min and max? On a closed piece a discontinuous \(f\) may not reach its highest value. Example: \(f(x)=x\) for \(0\le x&lt;1\) and \(f(1)=0\) has \(\sup=1\), never attained. The inf and sup always exist because \(f\) is bounded.</p>
+  <p>Always \(m_i\le M_i\) and \(\Delta x_i>0\), so \(L(P,f)\le U(P,f)\).</p>
+
+  <div class="box" data-tag="Method">
+    <ol class="steps">
+      <li>List the pieces and their widths \(\Delta x_i\).</li>
+      <li>On each piece find \(m_i\) and \(M_i\). If \(f\) is increasing, \(m_i=f(\text{left end})\) and \(M_i=f(\text{right end})\). If \(f\) is decreasing, swap them. If \(f\) rises and falls inside a piece, look at the shape.</li>
+      <li>Multiply by \(\Delta x_i\) and add.</li>
+    </ol>
+  </div>
+
+  <h3>Class example: \(f(x)=x^2-1\) on \([0,1]\)</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>Take \(P=\{0,\tfrac14,\tfrac12,\tfrac34,1\}\). Here \(\Delta x_i=\tfrac14\). The function \(x^2-1\) is increasing on \([0,1]\), so \(m_i\) is the left value and \(M_i\) the right value.</p>
+    <div class="tbl"><table>
+      <tr><th>i</th><th>piece</th><th>\(m_i\)</th><th>\(M_i\)</th></tr>
+      <tr><td>1</td><td>\([0,\tfrac14]\)</td><td>\(f(0)=-1\)</td><td>\(f(\tfrac14)=-\tfrac{15}{16}\)</td></tr>
+      <tr><td>2</td><td>\([\tfrac14,\tfrac12]\)</td><td>\(-\tfrac{15}{16}\)</td><td>\(f(\tfrac12)=-\tfrac34\)</td></tr>
+      <tr><td>3</td><td>\([\tfrac12,\tfrac34]\)</td><td>\(-\tfrac34\)</td><td>\(f(\tfrac34)=-\tfrac{7}{16}\)</td></tr>
+      <tr><td>4</td><td>\([\tfrac34,1]\)</td><td>\(-\tfrac{7}{16}\)</td><td>\(f(1)=0\)</td></tr>
+    </table></div>
+    <p>Lower sum:
+    \[L=\tfrac14\left(-1-\tfrac{15}{16}-\tfrac{12}{16}-\tfrac{7}{16}\right)=\tfrac14\cdot\left(-\tfrac{50}{16}\right)=-\tfrac{50}{64}=-\tfrac{25}{32}.\]
+    Upper sum:
+    \[U=\tfrac14\left(-\tfrac{15}{16}-\tfrac{12}{16}-\tfrac{7}{16}+0\right)=\tfrac14\cdot\left(-\tfrac{34}{16}\right)=-\tfrac{34}{64}=-\tfrac{17}{32}.\]
+    The true integral is \(\int_0^1(x^2-1)\,dx=\tfrac13-1=-\tfrac23\approx-0.667\). Check the sandwich:
+    \[-0.781\le -0.667\le -0.531.\]</p>
+    <p>Notice \(U-L=\tfrac{16}{64}=\tfrac14\). For an increasing \(f\) on a uniform partition, \(U-L=(f(b)-f(a))\,\Delta x\). The terms telescope. You will use this again.</p>
+  </div>
+  <div class="box trap" data-tag="Check against your notes">
+    <p>Your handwritten page records \(L=-\tfrac{55}{64}\) and \(U=-\tfrac{27}{64}\) for this integral. With the uniform partition above I get \(-\tfrac{50}{64}\) and \(-\tfrac{34}{64}\). If the lecturer used a different partition, the numbers differ. Check which partition the slide used, and remember the method, not the numbers.</p>
+  </div>
+
+  <h3>When the function turns inside a piece</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f(x)=\sin x\) on \([0,\pi]\), \(P=\{0,\tfrac\pi2,\pi\}\). Each piece has width \(\tfrac\pi2\).</p>
+    <ol class="steps">
+      <li>On \([0,\tfrac\pi2]\): \(\sin\) rises from \(0\) to \(1\). So \(m_1=0\), \(M_1=1\).</li>
+      <li>On \([\tfrac\pi2,\pi]\): \(\sin\) falls from \(1\) to \(0\). So \(m_2=0\), \(M_2=1\).</li>
+      <li>\(L=0\cdot\tfrac\pi2+0\cdot\tfrac\pi2=0\). \(U=1\cdot\tfrac\pi2+1\cdot\tfrac\pi2=\pi\).</li>
+    </ol>
+    <p>This partition is coarse, so the sums are far apart. The true integral is \(2\).</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">\(f(x)=2x+1\) on \([0,2]\), \(P=\{0,1,2\}\). Find \(L(P,f)\) and \(U(P,f)\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Increasing, \(\Delta x_i=1\). \(m_1=f(0)=1\), \(m_2=f(1)=3\). \(M_1=3\), \(M_2=f(2)=5\). So \(L=1+3=4\) and \(U=3+5=8\). The integral is \(6\), which sits between.</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=1/x\) on \([1,3]\), \(P=\{1,2,3\}\). Find \(L\) and \(U\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Decreasing, so \(m_i\) is the right value. \(m_1=f(2)=\tfrac12\), \(m_2=f(3)=\tfrac13\). \(M_1=f(1)=1\), \(M_2=f(2)=\tfrac12\). \(L=\tfrac12+\tfrac13=\tfrac56\). \(U=1+\tfrac12=\tfrac32\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=-x\) on \([0,4]\), uniform partition with \(n=2\). Find \(L\) and \(U\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(P=\{0,2,4\}\), \(\Delta x=2\). Decreasing: \(m_1=f(2)=-2\), \(m_2=f(4)=-4\), \(M_1=f(0)=0\), \(M_2=f(2)=-2\). \(L=-4-8=-12\). \(U=0-4=-4\). The integral is \(-8\), between them.</p></div></details></div>
+    <div class="q"><p class="qt">Why is \(L(P,f)\le U(P,f)\) for every partition?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>On each piece \(m_i\le M_i\) (an inf is at most a sup), and \(\Delta x_i>0\). So \(m_i\Delta x_i\le M_i\Delta x_i\). Add over \(i\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f\equiv c\) on \([a,b]\). What are \(L(P,f)\) and \(U(P,f)\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Every \(m_i=M_i=c\). So both equal \(c\sum\Delta x_i=c(b-a)\), for every \(P\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="bounds" data-wk="Week 7" data-title="Bounds on the sums" data-track="1">
+  <p class="wk">Week 7</p>
+  <h2>Bounds on the sums</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>If \(f\) stays between \(m\) and \(M\), then the whole area under \(f\) is trapped between a short rectangle (height \(m\)) and a tall rectangle (height \(M\)). Every lower sum and every upper sum is trapped there too.</p>
+  </div>
+  <div class="box thm" data-tag="Proposition">
+    <p>Let \(f:[a,b]\to\R\) be bounded with \(m\le f(x)\le M\) for all \(x\in[a,b]\). Then for every partition \(P\),
+    \[m(b-a)\le L(P,f)\le U(P,f)\le M(b-a).\]</p>
+  </div>
+  <p>Click the grey boxes in the proof to reveal them. Try to say each one first.</p>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>On each piece, \(m\) is a lower bound for \(f\), so \(m\le\) <span class="cz" tabindex="0" role="button">\(m_i\)</span>. In the same way \(M_i\le M\). Also \(m_i\le M_i\). So \(m\le m_i\le M_i\le M\).</li>
+      <li>Multiply by \(\Delta x_i\) <span class="cz" tabindex="0" role="button">which is positive, so the inequalities keep their direction</span>, and add over \(i\):
+      \[\sum m\,\Delta x_i\le\sum m_i\Delta x_i\le\sum M_i\Delta x_i\le\sum M\,\Delta x_i.\]</li>
+      <li>Pull out the constants. \(\sum m\,\Delta x_i=m\sum\Delta x_i=\) <span class="cz" tabindex="0" role="button">\(m(b-a)\)</span> by telescoping. Likewise the right-hand sum is \(M(b-a)\). \(\square\)</li>
+    </ol>
+  </div>
+  <p><b>Why this matters.</b> The set of lower sums and the set of upper sums are bounded. So their sup and inf exist. That is what lets us define the lower and upper integrals next.</p>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">\(f(x)=x^2\) on \([1,3]\). Use the proposition to give bounds on every \(L(P,f)\) and \(U(P,f)\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>On \([1,3]\), \(1\le x^2\le 9\). So \(m=1\), \(M=9\), \(b-a=2\). Then \(2\le L(P,f)\le U(P,f)\le 18\).</p></div></details></div>
+    <div class="q"><p class="qt">Where exactly does the proof need \(\Delta x_i>0\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>When multiplying \(m\le m_i\le M_i\le M\) by \(\Delta x_i\). A negative factor would reverse the inequalities.</p></div></details></div>
+    <div class="q"><p class="qt">Why does the proposition show that "the set of lower sums is bounded"?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Every lower sum satisfies \(m(b-a)\le L(P,f)\le M(b-a)\). So the set is bounded below and above, and has a sup.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="darbouxint" data-wk="Week 7" data-title="Lower and upper integrals" data-track="1">
+  <p class="wk">Week 7</p>
+  <h2>Lower and upper integrals</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>Lower sums approach the area from below. Take the best one: the biggest. Upper sums approach from above. Take the best one: the smallest. These two numbers exist for every bounded function. They may or may not agree.</p>
+  </div>
+  <div class="box" data-tag="Definition">
+    <p>For bounded \(f:[a,b]\to\R\),
+    \[\lowint f=\sup\{L(P,f):P\text{ a partition of }[a,b]\},\qquad \upint f=\inf\{U(P,f):P\text{ a partition of }[a,b]\}.\]
+    The first is the <b>lower Darboux integral</b>, the second the <b>upper Darboux integral</b>.</p>
+  </div>
+  <div class="box trap" data-tag="Very important">
+    <p><b>Lower</b> integral uses <b>sup</b>. <b>Upper</b> integral uses <b>inf</b>. Your notes underline this. Memory hook: lower sums are small, so you want the largest one. Upper sums are large, so you want the smallest one.</p>
+  </div>
+  <p>If \(f\) is defined on a bigger set, use its restriction to \([a,b]\), and make sure that restriction is bounded.</p>
+
+  <h3>Class example: the Dirichlet function</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f:[0,1]\to\R\), \(f(x)=1\) if \(x\in\Q\) and \(f(x)=0\) if \(x\notin\Q\). It is bounded: \(0\le f\le1\).</p>
+    <ol class="steps">
+      <li>Take any partition \(P\) and any piece \([x_{i-1},x_i]\). Every interval contains a rational and an irrational (both are dense in \(\R\)).</li>
+      <li>So \(m_i=0\) (an irrational gives value \(0\)) and \(M_i=1\) (a rational gives value \(1\)).</li>
+      <li>\(L(P,f)=\sum0\cdot\Delta x_i=0\) and \(U(P,f)=\sum1\cdot\Delta x_i=1-0=1\), for every \(P\).</li>
+      <li>So \(\lowint f=\sup\{0\}=0\) and \(\upint f=\inf\{1\}=1\).</li>
+    </ol>
+    <p>The two integrals differ. This \(f\) will not be Riemann integrable.</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">Let \(g:[0,3]\to\R\) with \(g(x)=2\) on the rationals and \(g(x)=-1\) on the irrationals. Find the lower and upper Darboux integrals.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Every piece has \(m_i=-1\) and \(M_i=2\). So \(L=-1\cdot3=-3\) and \(U=2\cdot3=6\) for every \(P\). Lower integral \(=-3\), upper integral \(=6\).</p></div></details></div>
+    <div class="q"><p class="qt">Write the definition of the lower Darboux integral.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>For bounded \(f:[a,b]\to\R\): \(\lowint f=\sup\{L(P,f):P\text{ is a partition of }[a,b]\}\).</p></div></details></div>
+    <div class="q"><p class="qt">Why do we take the sup of lower sums and not the inf?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>We want the best approximation from below. That is the largest lower sum. The inf would be dragged down by terrible, coarse partitions.</p></div></details></div>
+    <div class="q"><p class="qt">For constant \(f\equiv c\), what are the lower and upper integrals?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Every \(L=U=c(b-a)\). So both integrals equal \(c(b-a)\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="refine" data-wk="Week 7" data-title="Refinements" data-track="1">
+  <p class="wk">Week 7</p>
+  <h2>Refinements</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A refinement keeps all your cut points and adds more. More cuts means rectangles hug the graph more tightly: the lower sum can only go up, the upper sum can only go down.</p>
+  </div>
+  <div class="box" data-tag="Definition">
+    <p>Let \(P\) be a partition of \([a,b]\). A <b>refinement</b> of \(P\) is a partition \(\tilde P\) of \([a,b]\) with \(P\subseteq\tilde P\).</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p>On \([0,1]\) let \(P=\{0,\tfrac12,1\}\).</p>
+    <ul>
+      <li>\(Q=\{0,\tfrac13,\tfrac23,1\}\) is <b>not</b> a refinement of \(P\). The point \(\tfrac12\) is in \(P\) but not in \(Q\).</li>
+      <li>\(Q'=\{0,\tfrac14,\tfrac12,\tfrac34,1\}\) <b>is</b> a refinement. Every point of \(P\) is in \(Q'\).</li>
+      <li>Any two partitions have a common refinement, their union. Here \(P\cup Q=\{0,\tfrac13,\tfrac12,\tfrac23,1\}\) refines both.</li>
+    </ul>
+    <p>For uniform partitions: the one with \(n\) pieces is refined by the one with \(kn\) pieces. So \(n=2\) is refined by \(n=4\), but \(n=2\) is not refined by \(n=3\).</p>
+  </div>
+
+  <div class="box thm" data-tag="Proposition">
+    <p>Let \(f\) be bounded and \(\tilde P\) a refinement of \(P\). Then
+    \[L(P,f)\le L(\tilde P,f)\qquad\text{and}\qquad U(\tilde P,f)\le U(P,f).\]</p>
+  </div>
+  <p>Proof for the lower sum. It is enough to add <b>one</b> point and then repeat. Click to reveal the key lines.</p>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>Let \(\tilde P=P\cup\{t\}\) with \(x_{i-1}&lt;t&lt;x_i\). Only piece \(i\) changes. It splits into \([x_{i-1},t]\) and \([t,x_i]\). Let \(m'\) and \(m''\) be the infima of \(f\) on the two new pieces.</li>
+      <li>Each new piece is inside \([x_{i-1},x_i]\). An infimum over a smaller set is <span class="cz" tabindex="0" role="button">larger than or equal to the infimum over the bigger set</span>. So \(m'\ge m_i\) and \(m''\ge m_i\).</li>
+      <li>The old term \(m_i\Delta x_i\) is replaced by two terms, and
+      \[m'(t-x_{i-1})+m''(x_i-t)\ \ge\ m_i(t-x_{i-1})+m_i(x_i-t).\]
+      The right-hand side equals <span class="cz" tabindex="0" role="button">\(m_i\,\Delta x_i\)</span>.</li>
+      <li>All other terms are unchanged. So \(L(\tilde P,f)\ge L(P,f)\). Repeat for each added point. \(\square\)</li>
+    </ol>
+    <p>The upper sum is the mirror image. Over a smaller set a sup is smaller or equal, so \(M',M''\le M_i\) and \(U(\tilde P,f)\le U(P,f)\).</p>
+  </div>
+
+  <div class="box thm" data-tag="Lemma">
+    <p>For any two partitions \(P_1,P_2\) of \([a,b]\): \(L(P_1,f)\le U(P_2,f)\).</p>
+  </div>
+  <p>Proof. Let \(\tilde P=P_1\cup P_2\). It refines both. Then
+  \[L(P_1,f)\ \le\ L(\tilde P,f)\ \le\ U(\tilde P,f)\ \le\ U(P_2,f).\]
+  The three steps are: refine for \(L\), \(L\le U\) on the same partition, refine for \(U\). Your notes say to learn each of the three separately.</p>
+
+  <div class="box thm" data-tag="Proposition">
+    <p>\(\displaystyle\lowint f\ \le\ \upint f\). Also \(m(b-a)\le\lowint f\le\upint f\le M(b-a)\) if \(m\le f\le M\).</p>
+  </div>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>Fix a partition \(P_2\). By the lemma, <span class="cz" tabindex="0" role="button">\(U(P_2,f)\) is an upper bound of every lower sum \(L(P_1,f)\)</span>.</li>
+      <li>So the sup of the lower sums is at most it: \(\lowint f\le U(P_2,f)\).</li>
+      <li>\(P_2\) was arbitrary. So \(\lowint f\) is <span class="cz" tabindex="0" role="button">a lower bound of all upper sums</span>, hence at most their inf, which is \(\upint f\). \(\square\)</li>
+    </ol>
+  </div>
+
+  <h3>Worked numbers: watch refinement work</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f(x)=x\) on \([0,1]\), increasing. Start with \(P=\{0,\tfrac12,1\}\) and refine to \(\tilde P=\{0,\tfrac14,\tfrac12,\tfrac34,1\}\).</p>
+    <p>\(L(P)=\tfrac12\left(0+\tfrac12\right)=\tfrac14\) and \(U(P)=\tfrac12\left(\tfrac12+1\right)=\tfrac34\).</p>
+    <p>\(L(\tilde P)=\tfrac14\left(0+\tfrac14+\tfrac12+\tfrac34\right)=\tfrac38\) and \(U(\tilde P)=\tfrac14\left(\tfrac14+\tfrac12+\tfrac34+1\right)=\tfrac58\).</p>
+    \[\tfrac14\le\tfrac38\le\underbrace{\tfrac12}_{\int_0^1x\,dx}\le\tfrac58\le\tfrac34.\]
+    <p>The gap \(U-L\) shrank from \(\tfrac12\) to \(\tfrac14\).</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">Is \(\{0,\tfrac13,\tfrac23,1\}\) a refinement of \(\{0,\tfrac12,1\}\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>No. \(\tfrac12\) is in the second set but not in the first.</p></div></details></div>
+    <div class="q"><p class="qt">Find the common refinement \(P\cup Q\) for \(P=\{0,1,3\}\) and \(Q=\{0,2,3\}\) of \([0,3]\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\{0,1,2,3\}\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=x\) on \([0,2]\). Compute \(L\) and \(U\) for \(P=\{0,2\}\) and for \(\tilde P=\{0,1,2\}\). Check both refinement inequalities.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(P\): \(L=0\cdot2=0\), \(U=2\cdot2=4\). \(\tilde P\): \(L=0\cdot1+1\cdot1=1\), \(U=1\cdot1+2\cdot1=3\). So \(0\le1\) and \(3\le4\). &#10003;</p></div></details></div>
+    <div class="q"><p class="qt">Why can \(U(\tilde P,f)\) never exceed \(U(P,f)\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Splitting a piece makes each new sup a sup over a smaller set, so it is at most the old \(M_i\). The new terms add up to at most \(M_i\Delta x_i\).</p></div></details></div>
+    <div class="q"><p class="qt">Write the chain of inequalities that proves \(L(P_1,f)\le U(P_2,f)\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>With \(\tilde P=P_1\cup P_2\): \(L(P_1,f)\le L(\tilde P,f)\le U(\tilde P,f)\le U(P_2,f)\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<!-- ============ EXPLORER ============ -->
+<section class="topic" id="explorer" data-wk="Weeks 7 and 8" data-title="Sum explorer" data-track="1">
+  <p class="wk">Weeks 7 and 8 · interactive</p>
+  <h2>Sum explorer</h2>
+  <p>Use this to see the ideas move. <span class="lo">Red</span> rectangles are the lower sum. <span class="up">Blue</span> rectangles are the upper sum. The three functions are the class examples.</p>
+  <div class="xp">
+    <div class="ctl">
+      <label for="fn">Function
+        <select id="fn">
+          <option value="sq">f(x) = x² − 1 on [0, 1]</option>
+          <option value="rec">f(x) = 1/(1+x) on [0, 2]</option>
+          <option value="step">Step function on [0, 2]</option>
+        </select>
+      </label>
+      <label for="nrange" id="nwrap">Pieces n: <span id="nval">4</span>
+        <input type="range" id="nrange" min="1" max="64" value="4">
+      </label>
+      <label for="erange" id="ewrap" hidden>ε: <span id="eval">0.50</span>
+        <input type="range" id="erange" min="0.05" max="0.95" step="0.05" value="0.5">
+      </label>
+      <button class="btn" type="button" id="dbl">Refine: double n</button>
+    </div>
+    <svg id="plot" viewBox="0 0 640 330" role="img" aria-label="Lower and upper Darboux rectangles under the graph"></svg>
+    <div class="read">
+      <div><b>Lower sum L</b><span id="rL">–</span></div>
+      <div><b>Upper sum U</b><span id="rU">–</span></div>
+      <div><b>U − L</b><span id="rD">–</span></div>
+      <div><b>Predicted U − L</b><span id="rP">–</span></div>
+      <div><b>True integral</b><span id="rI">–</span></div>
+    </div>
+    <p class="msg" id="xmsg"></p>
+  </div>
+  <div class="box idea" data-tag="What to notice">
+    <ul>
+      <li>Press "Refine: double n" repeatedly. Doubling \(n\) refines the partition. \(L\) only goes up and \(U\) only goes down.</li>
+      <li>For the two monotone examples, \(U-L=\dfrac{(b-a)\,|f(b)-f(a)|}{n}\) exactly. For \(1/(1+x)\) with \(b=2\) this is \(\dfrac{b^2}{n(b+1)}=\dfrac{4}{3n}\), the class formula.</li>
+      <li>For the step function, the partition is \(\{0,1-\varepsilon,1+\varepsilon,2\}\). Shrink \(\varepsilon\). The jump is trapped in a thinner and thinner piece, and \(U-L=2\varepsilon\) goes to zero.</li>
+    </ul>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<!-- ============ WEEK 8 ============ -->
+<section class="topic" id="integrable" data-wk="Week 8" data-title="Riemann integrable" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Riemann integrable functions</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A bounded function is Riemann integrable when the lowest possible area from below and the highest possible area from above meet. That single number is the integral. It is an area. It is not an antiderivative.</p>
+  </div>
+  <div class="box" data-tag="Definition">
+    <p>Let \(f:[a,b]\to\R\) be bounded. Then \(f\) is <b>Riemann integrable</b> if
+    \[\lowint f=\upint f.\]
+    The set of Riemann integrable functions on \([a,b]\) is \(\mathcal R([a,b])\). For \(f\in\mathcal R([a,b])\) define
+    \[\int_a^b f=\int_a^b f(x)\,dx:=\lowint f=\upint f.\]</p>
+  </div>
+  <p>By definition, an integrable function is bounded.</p>
+
+  <div class="box thm" data-tag="Proposition">
+    <p>Let \(f\in\mathcal R([a,b])\) and \(m\le f(x)\le M\) for all \(x\in[a,b]\). Then
+    \[m(b-a)\le\int_a^b f\le M(b-a).\]</p>
+  </div>
+  <p>Proof. For any partition \(P\) we have \(m(b-a)\le L(P,f)\) by Week 7. Since \(\int_a^b f=\lowint f=\sup L\), also \(L(P,f)\le\int_a^b f\). So \(m(b-a)\le\int_a^b f\). Similarly \(\int_a^b f=\upint f\le U(P,f)\le M(b-a)\). \(\square\)</p>
+  <div class="box thm" data-tag="Corollary">
+    <p>If \(f\in\mathcal R([a,b])\) and \(|f(x)|\le M\) for all \(x\), then \(\left|\int_a^b f\right|\le M(b-a)\).</p>
+  </div>
+  <p>Proof. \(-M\le f\le M\), so \(-M(b-a)\le\int_a^b f\le M(b-a)\).</p>
+
+  <div class="box trap" data-tag="Integral vs antiderivative">
+    <p>An antiderivative of \(f\) is a <i>function</i> \(F\) with \(F'=f\). The integral \(\int_a^b f\) is a <i>number</i>, an area. Sometimes they are linked, but they are different objects and that link is a theorem we have not proved yet.</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State what it means for \(f:[a,b]\to\R\) to be Riemann integrable.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f\) is bounded and \(\lowint f=\upint f\), that is, \(\sup\{L(P,f)\}=\inf\{U(P,f)\}\) over all partitions \(P\) of \([a,b]\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f\in\mathcal R([0,3])\) and \(2\le f(x)\le5\). Bound \(\int_0^3 f\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(2\cdot3\le\int_0^3f\le5\cdot3\), so \(6\le\int_0^3f\le15\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f\in\mathcal R([1,3])\) and \(|f|\le4\). Bound \(\left|\int_1^3f\right|\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\left|\int_1^3f\right|\le4\cdot2=8\).</p></div></details></div>
+    <div class="q"><p class="qt">Is the Dirichlet function on \([0,1]\) Riemann integrable? Why?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>No. Its lower Darboux integral is \(0\) and its upper Darboux integral is \(1\). They differ.</p></div></details></div>
+    <div class="q"><p class="qt">One sentence: how does an integral differ from an antiderivative?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>The integral \(\int_a^bf\) is a number (an area). An antiderivative is a function \(F\) with \(F'=f\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="constant" data-wk="Week 8" data-title="Constant functions" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Class example: constant functions</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A constant function is a rectangle. Lower and upper sums are both exactly the area of that rectangle, whatever the partition. So the integral is height times width.</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p>Let \(f:[a,b]\to\R\) with \(f(x)=c\) for all \(x\). Claim: \(f\in\mathcal R([a,b])\) and \(\int_a^bc\,dx=c(b-a)\).</p>
+    <ol class="steps">
+      <li>Take any partition \(P\). On every piece, \(f\) takes only the value \(c\). So \(m_i=\inf\{c\}=c\) and \(M_i=\sup\{c\}=c\).</li>
+      <li>\(L(P,f)=\sum c\,\Delta x_i=c\sum\Delta x_i=c(b-a)\). Also \(U(P,f)=c(b-a)=L(P,f)\).</li>
+      <li>Lower integral: \(\sup\{c(b-a)\}=c(b-a)\). Upper integral: \(\inf\{c(b-a)\}=c(b-a)\).</li>
+      <li>They are equal. So \(f\) is Riemann integrable and \(\int_a^bc\,dx=c(b-a)\). \(\square\)</li>
+    </ol>
+    <p>Shortcut. Take \(m=M=c\) in the bounds proposition. All the inequalities become equalities.</p>
+    <p>Numbers: \(\int_1^4 5\,dx=5\cdot3=15\).</p>
+  </div>
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">Compute \(\int_{-1}^{2}3\,dx\) and \(\int_0^5(-2)\,dx\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(3\cdot3=9\). And \(-2\cdot5=-10\). A negative \(c\) works the same way, because every \(m_i=M_i=c\).</p></div></details></div>
+    <div class="q"><p class="qt">In the proof, where is "the set \(\{c(b-a)\}\) has one element" used?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Step 3. The sup and inf of a one-element set are both that element. So lower and upper integrals agree.</p></div></details></div>
+    <div class="q"><p class="qt">Complete: for a constant function every \(L(P,f)\) equals every \(U(P,f)\), and both equal ____.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(c(b-a)\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="step" data-wk="Week 8" data-title="The step function" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Class example: the step function</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>The function jumps at \(x=1\). That is a problem for continuity but not for integration. Put the jump inside one thin piece. That piece adds only a tiny amount to \(U-L\). Make the piece thinner and the gap vanishes.</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f:[0,2]\to\R\),
+    \[f(x)=\begin{cases}1&amp;x&lt;1\\[2pt] \tfrac12&amp;x=1\\[2pt] 0&amp;x>1.\end{cases}\]
+    Claim: \(f\) is Riemann integrable and \(\int_0^2f=1\).</p>
+    <ol class="steps">
+      <li><b>Bounded.</b> \(0\le f(x)\le1\) for all \(x\in[0,2]\).</li>
+      <li><b>Choose a partition.</b> Let \(0&lt;\varepsilon&lt;1\) and \(P_\varepsilon=\{0,\,1-\varepsilon,\,1+\varepsilon,\,2\}\). The jump point \(x=1\) lies inside the middle piece. We need \(\varepsilon&lt;1\) so that \(0&lt;1-\varepsilon\) and \(1+\varepsilon&lt;2\), keeping the points strictly increasing.</li>
+      <li><b>Find \(m_i\), \(M_i\), \(\Delta x_i\).</b>
+        <div class="tbl"><table>
+          <tr><th>piece</th><th>values of \(f\)</th><th>\(m_i\)</th><th>\(M_i\)</th><th>\(\Delta x_i\)</th></tr>
+          <tr><td>\([0,1-\varepsilon]\)</td><td>all \(1\)</td><td>1</td><td>1</td><td>\(1-\varepsilon\)</td></tr>
+          <tr><td>\([1-\varepsilon,1+\varepsilon]\)</td><td>\(1,\tfrac12,0\)</td><td>0</td><td>1</td><td>\(2\varepsilon\)</td></tr>
+          <tr><td>\([1+\varepsilon,2]\)</td><td>all \(0\)</td><td>0</td><td>0</td><td>\(1-\varepsilon\)</td></tr>
+        </table></div></li>
+      <li><b>Compute the sums.</b>
+        \[L(P_\varepsilon,f)=1(1-\varepsilon)+0\cdot2\varepsilon+0(1-\varepsilon)=1-\varepsilon,\]
+        \[U(P_\varepsilon,f)=1(1-\varepsilon)+1\cdot2\varepsilon+0(1-\varepsilon)=1+\varepsilon.\]
+        So \(U-L=2\varepsilon\).</li>
+      <li><b>Squeeze the two integrals.</b> The upper integral is an inf, so \(\upint f\le U(P_\varepsilon,f)=1+\varepsilon\). The lower integral is a sup, so \(-\lowint f\le-L(P_\varepsilon,f)=-(1-\varepsilon)\). Add, and use \(\lowint f\le\upint f\):
+        \[0\le\upint f-\lowint f\le(1+\varepsilon)-(1-\varepsilon)=2\varepsilon.\]</li>
+      <li><b>Conclude.</b> \(\upint f-\lowint f\) is a non-negative number below \(2\varepsilon\) for every \(\varepsilon\in(0,1)\). The only such number is \(0\). So the two integrals are equal and \(f\) is Riemann integrable.</li>
+      <li><b>Find the value.</b> \(1-\varepsilon=L(P_\varepsilon,f)\le\int_0^2f\le U(P_\varepsilon,f)=1+\varepsilon\). So \(\left|\int_0^2f-1\right|\le\varepsilon\) for every \(\varepsilon\). Hence \(\int_0^2f=1\). \(\square\)</li>
+    </ol>
+    <p>Geometry: the area is the \(1\times1\) rectangle on \([0,1]\). The value \(\tfrac12\) at the single point \(x=1\) changes nothing.</p>
+  </div>
+  <p>Try it in the <a href="#explorer">Sum explorer</a>: choose the step function and drag \(\varepsilon\).</p>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">Let \(g(x)=1\) for \(x\le1\) and \(g(x)=0\) for \(x>1\) on \([0,2]\). Use the same \(P_\varepsilon\) to find \(\int_0^2g\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>The \(m_i\) and \(M_i\) are the same as before, so \(L=1-\varepsilon\) and \(U=1+\varepsilon\). So \(g\) is integrable with \(\int_0^2g=1\). The value at the single point \(x=1\) does not matter.</p></div></details></div>
+    <div class="q"><p class="qt">\(h(x)=0\) for \(x&lt;1\) and \(h(x)=3\) for \(x\ge1\) on \([0,2]\). With \(P_\varepsilon\), find \(L\), \(U\), \(U-L\) and \(\int_0^2h\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Pieces: \([0,1-\varepsilon]\) has \(m=M=0\). \([1-\varepsilon,1+\varepsilon]\) has \(m=0\), \(M=3\). \([1+\varepsilon,2]\) has \(m=M=3\). \(L=3(1-\varepsilon)=3-3\varepsilon\). \(U=3\cdot2\varepsilon+3(1-\varepsilon)=3+3\varepsilon\). \(U-L=6\varepsilon\). The integral is \(3\).</p></div></details></div>
+    <div class="q"><p class="qt">Why can we not take \(\varepsilon=1\) in \(P_\varepsilon\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Then \(1-\varepsilon=0=a\), repeating the first point. The points must be strictly increasing. Similarly \(1+\varepsilon=2=b\).</p></div></details></div>
+    <div class="q"><p class="qt">Finish the sentence: "\(\upint f-\lowint f\) is a non-negative number less than or equal to \(2\varepsilon\) for every \(\varepsilon>0\), therefore ____."</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>It equals \(0\), so \(\lowint f=\upint f\) and \(f\) is Riemann integrable.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="condition" data-wk="Week 8" data-title="Integrability condition" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Riemann's integrability condition</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>The step-function trick works in general. A bounded function is integrable exactly when you can make the gap \(U-L\) as small as you like. You do not need to know the integral first.</p>
+  </div>
+  <div class="box thm" data-tag="Proposition">
+    <p>Let \(f:[a,b]\to\R\) be bounded. Then \(f\) is Riemann integrable if and only if for every \(\varepsilon>0\) there exists a partition \(P\) of \([a,b]\) such that
+    \[U(P,f)-L(P,f)&lt;\varepsilon.\]</p>
+  </div>
+  <h3>Proof of (⇒): integrable gives a small gap</h3>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>Let \(\varepsilon>0\). Since \(\int_a^bf=\lowint f=\sup\{L(P,f)\}\), some element of that set beats the number just below the sup. So there is a partition \(P_1\) with \(L(P_1,f)>\int_a^bf-\)<span class="cz" tabindex="0" role="button">\(\varepsilon/2\)</span>.</li>
+      <li>Since \(\int_a^bf=\upint f=\inf\{U(P,f)\}\), there is a partition \(P_2\) with \(U(P_2,f)&lt;\int_a^bf+\varepsilon/2\).</li>
+      <li>Let \(P=\) <span class="cz" tabindex="0" role="button">\(P_1\cup P_2\)</span>. It refines both, so \(L(P,f)\ge L(P_1,f)\) and \(U(P,f)\le U(P_2,f)\).</li>
+      <li>Then
+      \[U(P,f)-L(P,f)&lt;\left(\int_a^bf+\tfrac\varepsilon2\right)-\left(\int_a^bf-\tfrac\varepsilon2\right).\]
+      The right-hand side equals <span class="cz" tabindex="0" role="button">\(\varepsilon\)</span>. \(\square\)</li>
+    </ol>
+  </div>
+  <h3>Proof of (⇐): small gaps give integrable</h3>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>Suppose for every \(\varepsilon>0\) some \(P\) has \(U(P,f)-L(P,f)&lt;\varepsilon\).</li>
+      <li>We always have \(L(P,f)\le\lowint f\le\upint f\le U(P,f)\). So
+      \[0\le\upint f-\lowint f\le U(P,f)-L(P,f)&lt;\varepsilon.\]</li>
+      <li>A non-negative number smaller than every positive number is <span class="cz" tabindex="0" role="button">zero</span>. So \(\lowint f=\upint f\) and \(f\) is Riemann integrable. \(\square\)</li>
+    </ol>
+  </div>
+  <div class="box trap" data-tag="Why ε/2?">
+    <p>Two errors of size \(\varepsilon/2\) (one from the lower side, one from the upper side) add to \(\varepsilon\). That is the only reason for the halves.</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State Riemann's integrability condition.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Let \(f:[a,b]\to\R\) be bounded. Then \(f\) is Riemann integrable if and only if for every \(\varepsilon>0\) there exists a partition \(P\) of \([a,b]\) with \(U(P,f)-L(P,f)&lt;\varepsilon\).</p></div></details></div>
+    <div class="q"><p class="qt">Which direction needs refinements, and why?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>(⇒). It produces two partitions \(P_1\) (good for \(L\)) and \(P_2\) (good for \(U\)). The common refinement \(P_1\cup P_2\) is good for both at once.</p></div></details></div>
+    <div class="q"><p class="qt">For the Dirichlet function, \(U(P,f)-L(P,f)=1\) for every \(P\). What does the condition say?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Take \(\varepsilon=\tfrac12\). No partition has gap below \(\tfrac12\). So the condition fails and the function is not Riemann integrable.</p></div></details></div>
+    <div class="q"><p class="qt">Fill in: a ____ number that is smaller than every positive real number must be ____.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>A non-negative number must be zero.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="reciprocal" data-wk="Week 8" data-title="The 1/(1+x) example" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Class example: \(f(x)=\dfrac1{1+x}\)</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>Use equal-width pieces. Because \(f\) is monotone, each \(M_i-m_i\) is a difference of neighbouring values, and the sum of differences telescopes to just the first minus the last. Then pick \(n\) large.</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p>Let \(b>0\) and \(f:[0,b]\to\R\), \(f(x)=\dfrac1{1+x}\). Claim: \(f\) is Riemann integrable.</p>
+    <ol class="steps">
+      <li><b>Partition.</b> For \(n\in\N\), \(n\ge1\), let \(P_n=\{x_0,\dots,x_n\}\) with \(x_i=\dfrac{ib}{n}\). Then \(\Delta x_i=\dfrac bn=\dfrac{\text{length}[0,b]}{n}\).</li>
+      <li><b>Monotone.</b> \(f\) is decreasing on \([0,b]\). So on \([x_{i-1},x_i]\):
+        \[m_i=f(x_i)=\frac1{1+\frac{ib}{n}},\qquad M_i=f(x_{i-1})=\frac1{1+\frac{(i-1)b}{n}}.\]</li>
+      <li><b>The gap.</b>
+        \[U(P_n,f)-L(P_n,f)=\sum_{i=1}^n\Delta x_i(M_i-m_i)=\frac bn\sum_{i=1}^n\left(\frac1{1+\frac{(i-1)b}{n}}-\frac1{1+\frac{ib}{n}}\right).\]
+        Your notes write each term as \(\dfrac b{(i-1)b+n}-\dfrac b{ib+n}\). It is the same thing.</li>
+      <li><b>Telescope.</b> Terms cancel in pairs. Only the first and last survive:
+        \[\frac bn\left(\frac1{1+0}-\frac1{1+b}\right)=\frac bn\cdot\frac b{1+b}=\frac{b^2}{n(b+1)}.\]</li>
+      <li><b>Choose \(n\).</b> Let \(\varepsilon>0\). By the Archimedean property there is \(n\in\N\) with \(n>\dfrac{b^2}{\varepsilon(b+1)}\). Then \(\dfrac{b^2}{n(b+1)}&lt;\varepsilon\).</li>
+      <li><b>Conclude.</b> \(U(P_n,f)-L(P_n,f)&lt;\varepsilon\). By Riemann's integrability condition, \(f\) is Riemann integrable. \(\square\)</li>
+    </ol>
+  </div>
+  <div class="box trap" data-tag="Check against your notes">
+    <p>The last line of your handwritten page reads \(\tfrac1n&lt;\tfrac{\varepsilon(b+1)}{b}\). From your own result \(\tfrac{b^2}{n(b+1)}\), the correct requirement is \(\tfrac1n&lt;\tfrac{\varepsilon(b+1)}{b^2}\), with \(b^2\) not \(b\).</p>
+  </div>
+
+  <div class="box" data-tag="Template for any monotone function">
+    <ol class="steps">
+      <li>Show \(f\) is bounded.</li>
+      <li>Take the uniform partition with \(\Delta x=\frac{b-a}n\).</li>
+      <li>Use monotonicity to write \(m_i\) and \(M_i\) as values at the ends of each piece.</li>
+      <li>Telescope: \(U-L=\dfrac{b-a}n\,|f(b)-f(a)|\).</li>
+      <li>Choose \(n\) with this less than \(\varepsilon\) (Archimedean property).</li>
+      <li>Conclude with Riemann's integrability condition.</li>
+    </ol>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">\(f(x)=x\) on \([0,1]\), uniform \(P_n\). Find \(U-L\) and an \(n\) that makes it less than \(0.01\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(U-L=\tfrac1n(1-0)=\tfrac1n\). Need \(\tfrac1n&lt;0.01\), so \(n>100\). Take \(n=101\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=x^2\) on \([0,2]\), uniform \(P_n\). Find \(U-L\) and state how large \(n\) must be for a given \(\varepsilon\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Increasing, so \(U-L=\tfrac2n(4-0)=\tfrac8n\). Need \(n>\tfrac8\varepsilon\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=\tfrac1{1+x}\) on \([0,3]\). Find \(U-L\) for \(P_n\), then an \(n\) that gives gap below \(0.1\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(b=3\): \(U-L=\tfrac{9}{4n}\). Need \(\tfrac9{4n}&lt;0.1\), so \(n>22.5\). Take \(n=23\).</p></div></details></div>
+    <div class="q"><p class="qt">Why do we use the Archimedean property in the last step?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>It guarantees a natural number \(n\) larger than any given real number, here \(\tfrac{b^2}{\varepsilon(b+1)}\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="notation" data-wk="Week 8" data-title="Notation" data-track="1">
+  <p class="wk">Week 8</p>
+  <h2>Notation conventions</h2>
+  <ul>
+    <li><b>Restriction.</b> If \(f\) is defined on a bigger set \(S\) and \([c,d]\subseteq[a,b]\subseteq S\), we say \(f\) is Riemann integrable on \([c,d]\) when the restriction \(f|_{[c,d]}\) is. Then \(\int_c^df:=\int_c^df|_{[c,d]}\).</li>
+    <li><b>Reversed limits.</b> If \(b&lt;a\) and \(f\in\mathcal R([b,a])\), define \(\int_a^bf:=-\int_b^af\).</li>
+    <li><b>Equal limits.</b> If \(f\) is defined at \(a\), define \(\int_a^af:=0\).</li>
+    <li><b>Dummy variable.</b> \(\int_a^bf=\int_a^bf(x)\,dx=\int_a^bf(s)\,ds\). The variable name does not matter. Use a different letter if \(x\) is already taken.</li>
+  </ul>
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">If \(\int_0^2f=5\), find \(\int_2^0f\) and \(\int_2^2f\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\int_2^0f=-5\). \(\int_2^2f=0\).</p></div></details></div>
+    <div class="q"><p class="qt">Is \(\int_a^bf(x)\,dx\) the same as \(\int_a^bf(t)\,dt\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Yes. The variable of integration is a dummy variable.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+
+<!-- ============ WEEK 9 ============ -->
+<section class="topic" id="darbouxthm" data-wk="Week 9" data-title="Darboux's theorem" data-track="1">
+  <p class="wk">Week 9</p>
+  <h2>Darboux's theorem</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A derivative can be badly behaved, even discontinuous. But it cannot jump over a value. If \(f'\) is below \(y\) at one end and above \(y\) at the other, then \(f'\) equals \(y\) somewhere in between. This is the intermediate value property, for the <i>derivative</i>.</p>
+  </div>
+  <div class="box thm" data-tag="Theorem (Darboux)">
+    <p>Let \(f:[a,b]\to\R\) be differentiable. Suppose \(y\in\R\) satisfies \(f'(a)&lt;y&lt;f'(b)\) or \(f'(a)>y>f'(b)\). Then there exists \(c\in(a,b)\) with \(f'(c)=y\).</p>
+  </div>
+  <div class="box trap" data-tag="Do not confuse">
+    <p>Bolzano's IVT is about the values of a continuous \(f\). Darboux's theorem is about the values of \(f'\), and assumes only that \(f\) is differentiable. Darboux does <b>not</b> assume \(f'\) is continuous.</p>
+  </div>
+
+  <h3>The picture behind the proof</h3>
+  <svg viewBox="0 0 370 210" role="img" aria-label="A curve rising at a, flat at its peak c, falling at b" style="width:100%;max-width:520px;height:auto;display:block;background:var(--surface);border:1px solid var(--rule)">
+    <line x1="14" y1="178" x2="356" y2="178" style="stroke:var(--ink2)" stroke-width="1"/>
+    <path d="M30 160 Q185 -20 340 160" fill="none" style="stroke:var(--ink)" stroke-width="2.4"/>
+    <line x1="30" y1="160" x2="84" y2="100" style="stroke:var(--upper)" stroke-width="2"/>
+    <line x1="340" y1="160" x2="286" y2="100" style="stroke:var(--lower)" stroke-width="2"/>
+    <line x1="135" y1="70" x2="235" y2="70" style="stroke:var(--ink2)" stroke-width="2"/>
+    <line x1="30" y1="160" x2="30" y2="178" style="stroke:var(--ink2)" stroke-dasharray="3 3"/>
+    <line x1="185" y1="70" x2="185" y2="178" style="stroke:var(--ink2)" stroke-dasharray="3 3"/>
+    <line x1="340" y1="160" x2="340" y2="178" style="stroke:var(--ink2)" stroke-dasharray="3 3"/>
+    <circle cx="30" cy="160" r="4" style="fill:var(--ink)"/><circle cx="185" cy="70" r="4" style="fill:var(--ink)"/><circle cx="340" cy="160" r="4" style="fill:var(--ink)"/>
+    <g font-family="JetBrains Mono, monospace" font-size="12" style="fill:var(--ink2)">
+      <text x="26" y="196">a</text><text x="181" y="196">c</text><text x="336" y="196">b</text>
+      <text x="40" y="92" style="fill:var(--upper)">g′(a) &gt; 0</text>
+      <text x="262" y="92" style="fill:var(--lower)">g′(b) &lt; 0</text>
+      <text x="141" y="58">g′(c) = 0</text>
+    </g>
+  </svg>
+  <p style="margin-top:.8rem">Here \(g\) rises at \(a\), falls at \(b\), so its maximum is strictly inside \((a,b)\). At that interior maximum the derivative is \(0\).</p>
+
+  <h3>Proof (case \(f'(a)&lt;y&lt;f'(b)\))</h3>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>Define \(g(x)=yx-f(x)\). Then \(g'(x)=\) <span class="cz" tabindex="0" role="button">\(y-f'(x)\)</span>. So \(g'(a)=y-f'(a)>0\) and \(g'(b)=y-f'(b)&lt;0\).</li>
+      <li>\(g\) is differentiable, so continuous on \([a,b]\). By the <span class="cz" tabindex="0" role="button">Extreme Value Theorem</span>, \(g\) attains a maximum at some \(c\in[a,b]\).</li>
+      <li><b>Not at \(a\).</b> \(g'(a)>0\) is a limit of difference quotients, so some difference quotient is positive: there is \(x>a\) with \(\dfrac{g(x)-g(a)}{x-a}>0\). So <span class="cz" tabindex="0" role="button">\(g(x)>g(a)\)</span>, and \(a\) is not the maximum.</li>
+      <li><b>Not at \(b\).</b> \(g'(b)&lt;0\) gives \(x&lt;b\) with \(\dfrac{g(x)-g(b)}{x-b}&lt;0\), so \(g(x)>g(b)\). So \(b\) is not the maximum.</li>
+      <li>Therefore \(c\in(a,b)\). At an interior maximum \(g'(c)=0\), so \(y-f'(c)=0\), that is \(f'(c)=y\).</li>
+      <li>If \(f'(a)>y>f'(b)\), use \(g(x)=f(x)-yx\) instead. \(\square\)</li>
+    </ol>
+  </div>
+
+  <h3>Class-style use: a derivative cannot jump</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>Claim: \(h:[-1,1]\to\R\) with \(h(x)=0\) for \(x&lt;0\) and \(h(x)=1\) for \(x\ge0\) is not the derivative of any function.</p>
+    <ol class="steps">
+      <li>Suppose \(h=F'\) with \(F\) differentiable on \([-1,1]\). Then \(F'(-1)=0\) and \(F'(1)=1\).</li>
+      <li>Take \(y=\tfrac12\). It lies strictly between \(0\) and \(1\).</li>
+      <li>Darboux gives \(c\in(-1,1)\) with \(F'(c)=\tfrac12\). But \(h\) only takes the values \(0\) and \(1\). Contradiction.</li>
+    </ol>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State Darboux's theorem.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Let \(f:[a,b]\to\R\) be differentiable. If \(y\in\R\) with \(f'(a)&lt;y&lt;f'(b)\) or \(f'(a)>y>f'(b)\), then there is \(c\in(a,b)\) with \(f'(c)=y\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f:[0,2]\to\R\) is differentiable with \(f'(0)=-1\) and \(f'(2)=3\). Must \(f'\) take the value \(0\)? The value \(2.5\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Yes to both. \(0\) and \(2.5\) lie strictly between \(-1\) and \(3\). Darboux gives points \(c\) in \((0,2)\) where \(f'(c)=0\) and \(f'(c)=2.5\).</p></div></details></div>
+    <div class="q"><p class="qt">Show \(\operatorname{sgn}(x)\) is not a derivative on \([-1,1]\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>It equals \(-1\) at \(-1\) and \(1\) at \(1\), and takes only the values \(-1,0,1\). The value \(\tfrac12\) is between \(-1\) and \(1\) but never taken. Darboux's theorem would force it to be taken.</p></div></details></div>
+    <div class="q"><p class="qt">Why does \(g\) attain a maximum in the proof?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(g\) is continuous on the closed interval \([a,b]\). The Extreme Value Theorem gives a maximum.</p></div></details></div>
+    <div class="q"><p class="qt">Does Darboux's theorem need \(f'\) to be continuous?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>No. Only differentiability of \(f\) on \([a,b]\). That is the point: derivatives still have the intermediate value property.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="firsttest" data-wk="Week 9" data-title="First derivative test" data-track="1">
+  <p class="wk">Week 9</p>
+  <h2>First derivative test</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>If \(f\) falls up to \(c\) and rises after \(c\), then \(c\) is the bottom of a valley. If it rises then falls, \(c\) is the top of a hill. You do not even need \(f\) to be differentiable at \(c\).</p>
+  </div>
+  <div class="box" data-tag="Definition: absolute and local">
+    <p>Let \(f:D\to\R\). An <b>absolute maximum</b> is a value \(f(x_0)\) with \(x_0\in D\) and \(f(x)\le f(x_0)\) for all \(x\in D\). \(f\) has a <b>local maximum</b> at \(x_0\) if \(f(x_0)\) is an absolute maximum of the restriction of \(f\) to some open interval \(I\subseteq D\) containing \(x_0\). Minima are defined the same way with \(\ge\).</p>
+  </div>
+  <div class="box thm" data-tag="Proposition (First derivative test)">
+    <p>Let \(f:(a,b)\to\R\) be continuous, \(c\in(a,b)\), and suppose \(f\) is differentiable on \((a,c)\) and on \((c,b)\) (not necessarily at \(c\)).</p>
+    <ol type="i" style="margin-bottom:0">
+      <li>If \(f'(x)\le0\) on \((a,c)\) and \(f'(x)\ge0\) on \((c,b)\), then \(f\) has an absolute minimum at \(c\).</li>
+      <li>If \(f'(x)\ge0\) on \((a,c)\) and \(f'(x)\le0\) on \((c,b)\), then \(f\) has an absolute maximum at \(c\).</li>
+    </ol>
+  </div>
+  <p>To get a <i>local</i> extremum, restrict \(f\) to a small interval \((c-\delta,c+\delta)\) and apply the test there.</p>
+
+  <h3>Proof of (i)</h3>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>By the Mean Value Theorem, \(f'\le0\) on \((a,c)\) makes \(f\) <span class="cz" tabindex="0" role="button">decreasing</span> on \((a,c)\). Likewise \(f'\ge0\) on \((c,b)\) makes \(f\) increasing on \((c,b)\).</li>
+      <li>Take \(x\in(a,c)\) and a sequence \(y_n\) with \(x&lt;y_n&lt;c\) and \(y_n\to c\). Since \(f\) is decreasing, \(f(x)\ge f(y_n)\) for all \(n\).</li>
+      <li>\(f\) is continuous at \(c\), so \(f(y_n)\to\) <span class="cz" tabindex="0" role="button">\(f(c)\)</span>. Taking limits in \(f(x)\ge f(y_n)\) gives \(f(x)\ge f(c)\).</li>
+      <li>Take \(x\in(c,b)\) and \(y_n\) with \(c&lt;y_n&lt;x\), \(y_n\to c\). Since \(f\) is increasing, \(f(x)\ge f(y_n)\to f(c)\). So \(f(x)\ge f(c)\).</li>
+      <li>So \(f(x)\ge f(c)\) for every \(x\in(a,b)\). That is an absolute minimum at \(c\). \(\square\)</li>
+    </ol>
+    <p>Part (ii) is the same with the inequalities reversed.</p>
+  </div>
+  <div class="box trap" data-tag="Where continuity is used">
+    <p>The limit step uses continuity at \(c\). Without it the test fails. Example: \(f(x)=x^2\) for \(x\ne0\) and \(f(0)=1\) has \(f'\le0\) on the left and \(f'\ge0\) on the right, yet \(0\) is a local <i>maximum</i>. The problem is the jump at \(0\).</p>
+  </div>
+
+  <h3>Worked examples</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p><b>No derivative at \(c\).</b> \(f(x)=|x|\) on \((-1,1)\), \(c=0\). On \((-1,0)\), \(f(x)=-x\), so \(f'=-1\le0\). On \((0,1)\), \(f'=1\ge0\). \(f\) is continuous. So \(f\) has an absolute minimum at \(0\), although \(f'(0)\) does not exist.</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p><b>Local extrema.</b> \(f(x)=x^3-3x\), so \(f'(x)=3(x-1)(x+1)\).</p>
+    <ol class="steps">
+      <li>Near \(c=1\), use \((0,2)\). On \((0,1)\): \(f'&lt;0\). On \((1,2)\): \(f'>0\). So \(f|_{(0,2)}\) has an absolute minimum at \(1\). That is a local minimum, \(f(1)=-2\).</li>
+      <li>Near \(c=-1\), use \((-2,0)\). On \((-2,-1)\): \(f'>0\). On \((-1,0)\): \(f'&lt;0\). So a local maximum at \(-1\), \(f(-1)=2\).</li>
+    </ol>
+  </div>
+  <p>If \(f\) is differentiable at an interior extremum \(c\), then \(f'(c)=0\). The first derivative test is what you use when \(f'(c)\) may not exist.</p>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State the first derivative test, part (i).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Let \(f:(a,b)\to\R\) be continuous, \(c\in(a,b)\), \(f\) differentiable on \((a,c)\) and \((c,b)\). If \(f'(x)\le0\) for all \(x\in(a,c)\) and \(f'(x)\ge0\) for all \(x\in(c,b)\), then \(f\) has an absolute minimum at \(c\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=x^3-12x\). Find and classify the local extrema using the first derivative test.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f'(x)=3(x-2)(x+2)\). \(f'>0\) on \((-3,-2)\) and \(f'&lt;0\) on \((-2,2)\): local maximum at \(x=-2\), value \(f(-2)=16\). \(f'&lt;0\) on \((-2,2)\) and \(f'>0\) on \((2,3)\): local minimum at \(x=2\), value \(f(2)=-16\).</p></div></details></div>
+    <div class="q"><p class="qt">Define: \(f\) has a local maximum at \(x_0\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>There is an open interval \(I\subseteq D\) containing \(x_0\) such that \(f(x)\le f(x_0)\) for all \(x\in I\).</p></div></details></div>
+    <div class="q"><p class="qt">Why does the test not apply to \(f(x)=x^2\) \((x\ne0)\), \(f(0)=1\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f\) is not continuous at \(0\). The hypothesis "\(f\) continuous" fails.</p></div></details></div>
+    <div class="q"><p class="qt">Which earlier result turns "\(f'\le0\) on \((a,c)\)" into "\(f\) is decreasing"?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>The Mean Value Theorem.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="taylor" data-wk="Week 9" data-title="Taylor's theorem" data-track="1">
+  <p class="wk">Week 9</p>
+  <h2>Taylor's theorem</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>Near a point \(x_0\), a smooth function looks like a polynomial. The Mean Value Theorem gave the constant approximation \(f(x_0)\) with an error. Taylor adds more terms (slope, curvature, and so on) and gives an explicit error term.</p>
+  </div>
+  <p>Notation: \(f^{(n)}\) is the \(n\)th derivative. If \(f^{(n)}\) exists, \(f\) is <b>\(n\) times differentiable</b>.</p>
+  <div class="box" data-tag="Definition">
+    <p>For \(f\) \(n\) times differentiable near \(x_0\), the <b>\(n\)th order Taylor polynomial</b> at \(x_0\) is
+    \[P_n^{x_0}(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}2(x-x_0)^2+\dots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n.\]</p>
+  </div>
+  <div class="box thm" data-tag="Theorem (Taylor, Lagrange remainder)">
+    <p>Suppose \(f:[a,b]\to\R\) has \(n\) continuous derivatives on \([a,b]\) and \(f^{(n+1)}\) exists on \((a,b)\). Let \(x_0\ne x\) in \([a,b]\). Then there is a point \(c\) strictly between \(x_0\) and \(x\) with
+    \[f(x)=P_n^{x_0}(x)+\frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}.\]</p>
+  </div>
+  <ul>
+    <li>The last term is the <b>remainder</b> \(R_n^{x_0}(x)=f(x)-P_n^{x_0}(x)\). This form is the <b>Lagrange form</b>.</li>
+    <li>\(n=0\) gives \(f(x)=f(x_0)+f'(c)(x-x_0)\), the Mean Value Theorem.</li>
+    <li>The point \(c\) is unknown. It depends on \(x\) and \(x_0\). So you <i>bound</i> the remainder: if \(|f^{(n+1)}|\le K\), then \(|R_n|\le\dfrac{K|x-x_0|^{n+1}}{(n+1)!}\).</li>
+    <li>The proof is omitted in class. Know the statement, including the hypotheses.</li>
+  </ul>
+  <p><b>Taylor series.</b> If \(f\) is infinitely differentiable, the series \(\sum_{k\ge0}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\) may not converge for any \(x\ne x_0\). Even if it converges, it need not converge to \(f\). Functions whose Taylor series at every point converges to \(f\) near that point are <b>analytic</b>.</p>
+
+  <h3>Worked examples</h3>
+  <div class="box ex" data-tag="Sine at 0 (the class figure)">
+    <ol class="steps">
+      <li>Derivatives of \(\sin\): \(\sin,\cos,-\sin,-\cos,\sin,\dots\). At \(0\) the values are \(0,1,0,-1,0,1,\dots\).</li>
+      <li>So \(P_1=P_2=x\), \(P_3=P_4=x-\dfrac{x^3}{6}\), \(P_5=x-\dfrac{x^3}6+\dfrac{x^5}{120}\). The even-degree terms vanish.</li>
+      <li><b>Error bound.</b> Use \(n=2\): \(R_2=\dfrac{f'''(c)}{3!}x^3=\dfrac{-\cos c}{6}x^3\). Since \(|\cos c|\le1\), \(|\sin x-x|\le\dfrac{|x|^3}6\).</li>
+    </ol>
+  </div>
+  <div class="box ex" data-tag="Approximate e">
+    <p>\(f(x)=e^x\) at \(x_0=0\). Every derivative at \(0\) is \(1\). So \(P_n(x)=\sum_{k=0}^n\frac{x^k}{k!}\).</p>
+    <ol class="steps">
+      <li>\(n=3\), \(x=1\): \(P_3(1)=1+1+\tfrac12+\tfrac16=\tfrac83\).</li>
+      <li>Remainder: \(R_3=\dfrac{e^c}{4!}\cdot1^4\) for some \(c\in(0,1)\). So \(0&lt;R_3&lt;\dfrac{e}{24}&lt;\dfrac3{24}=\dfrac18\), using \(e&lt;3\).</li>
+      <li>So \(\tfrac83&lt;e&lt;\tfrac83+\tfrac18\). Check: \(2.667&lt;2.718&lt;2.792\). &#10003;</li>
+    </ol>
+  </div>
+  <div class="box ex" data-tag="A sanity check on a polynomial">
+    <p>\(f(x)=x^2\), \(x_0=1\), \(n=1\). \(P_1=1+2(x-1)\). Remainder: \(\dfrac{f''(c)}{2!}(x-1)^2=(x-1)^2\). So \(x^2=1+2(x-1)+(x-1)^2\), which is exact. Expanding confirms it.</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State Taylor's theorem, including the hypotheses.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Let \(f:[a,b]\to\R\) have \(n\) continuous derivatives on \([a,b]\) with \(f^{(n+1)}\) existing on \((a,b)\). For distinct \(x_0,x\in[a,b]\) there is \(c\) between \(x_0\) and \(x\) with \(f(x)=P_n^{x_0}(x)+\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}\).</p></div></details></div>
+    <div class="q"><p class="qt">Write \(P_2^{0}\) for \(f(x)=\cos x\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f(0)=1\), \(f'(0)=0\), \(f''(0)=-1\). So \(P_2^0(x)=1-\dfrac{x^2}2\).</p></div></details></div>
+    <div class="q"><p class="qt">Write \(P_3^{1}\) for \(f(x)=\ln x\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f=\ln x\), \(f'=1/x\), \(f''=-1/x^2\), \(f'''=2/x^3\). At \(1\): \(0,1,-1,2\). So \(P_3^1(x)=(x-1)-\dfrac{(x-1)^2}2+\dfrac{(x-1)^3}3\).</p></div></details></div>
+    <div class="q"><p class="qt">What does Taylor's theorem say when \(n=0\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f(x)=f(x_0)+f'(c)(x-x_0)\) for some \(c\) between \(x_0\) and \(x\). That is the Mean Value Theorem.</p></div></details></div>
+    <div class="q"><p class="qt">Use \(P_2^0\) for \(e^x\) to approximate \(e^{0.1}\) and bound the error.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(P_2(0.1)=1+0.1+\tfrac{0.01}2=1.105\). \(R_2=\dfrac{e^c}{3!}(0.1)^3\) with \(c\in(0,0.1)\). Since \(e^c&lt;2\), \(R_2&lt;\dfrac{2}{6}\cdot0.001&lt;\dfrac1{3000}\approx0.00033\).</p></div></details></div>
+    <div class="q"><p class="qt">Why do we bound the remainder rather than compute it?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>The point \(c\) is not known. It only exists. So we bound \(|f^{(n+1)}|\) on the interval and use that bound.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="secondtest" data-wk="Week 9" data-title="Second derivative test" data-track="1">
+  <p class="wk">Week 9</p>
+  <h2>Second derivative test</h2>
+  <div class="box idea" data-tag="In plain words">
+    <p>A flat spot where the graph curves upward is a valley bottom. Taylor's theorem makes this exact: near \(x_0\), \(f(x)-f(x_0)\) is a positive number times \((x-x_0)^2\).</p>
+  </div>
+  <div class="box" data-tag="Definition">
+    <p>\(f(x_0)\) is a <b>strict relative minimum</b> if there is \(\delta>0\) with \((x_0-\delta,x_0+\delta)\subseteq D\) and \(f(x)>f(x_0)\) for all \(x\) in that interval with \(x\ne x_0\). A strict relative maximum is the same with \(f(x)&lt;f(x_0)\).</p>
+  </div>
+  <div class="box thm" data-tag="Proposition (Second derivative test)">
+    <p>Let \(f:(a,b)\to\R\) be twice continuously differentiable, \(x_0\in(a,b)\), \(f'(x_0)=0\) and \(f''(x_0)>0\). Then \(f\) has a strict relative minimum at \(x_0\). If instead \(f''(x_0)&lt;0\), it is a strict relative maximum.</p>
+  </div>
+  <h3>Proof</h3>
+  <div class="proof">
+    <div class="proofbar"><button class="btn ghost" type="button" data-cz="all">Reveal or hide all</button><span>Cloze proof</span></div>
+    <ol class="steps">
+      <li>\(f''\) is continuous at \(x_0\) and \(f''(x_0)>0\). So there is \(\delta>0\) with <span class="cz" tabindex="0" role="button">\(f''>0\) on \((x_0-\delta,x_0+\delta)\)</span>.</li>
+      <li>Take \(x\) in that interval, \(x\ne x_0\). By Taylor's theorem with \(n=1\) there is \(c\) between \(x_0\) and \(x\) with
+      \[f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(c)}{2!}(x-x_0)^2.\]</li>
+      <li>\(f'(x_0)=0\), so the middle term is <span class="cz" tabindex="0" role="button">zero</span>. Hence \(f(x)=f(x_0)+\dfrac{f''(c)}{2}(x-x_0)^2\).</li>
+      <li>\(c\) lies in the interval, so \(f''(c)>0\). Also \((x-x_0)^2>0\) because \(x\ne x_0\). So \(f(x)>f(x_0)\). \(\square\)</li>
+    </ol>
+  </div>
+  <div class="box trap" data-tag="When f″(x₀) = 0">
+    <p>The test says nothing. \(x^4\), \(-x^4\) and \(x^3\) all have \(f'(0)=f''(0)=0\). The first is a minimum, the second a maximum, the third neither. Use the first derivative test instead.</p>
+  </div>
+
+  <h3>Worked examples</h3>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f(x)=x^3-3x\). Then \(f'(x)=3x^2-3\) and \(f''(x)=6x\). Critical points: \(f'(x)=0\) at \(x=\pm1\).</p>
+    <ul>
+      <li>\(f''(1)=6>0\). Strict relative minimum at \(x=1\).</li>
+      <li>\(f''(-1)=-6&lt;0\). Strict relative maximum at \(x=-1\).</li>
+    </ul>
+    <p>This agrees with the first derivative test result in the previous topic.</p>
+  </div>
+  <div class="box ex" data-tag="Worked example">
+    <p>\(f(x)=\cos x\) at \(x_0=0\). \(f'(0)=-\sin0=0\) and \(f''(0)=-\cos0=-1&lt;0\). So \(\cos\) has a strict relative maximum at \(0\).</p>
+  </div>
+
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">State the second derivative test.</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Let \(f:(a,b)\to\R\) be twice continuously differentiable, \(x_0\in(a,b)\) with \(f'(x_0)=0\) and \(f''(x_0)>0\). Then \(f\) has a strict relative minimum at \(x_0\).</p></div></details></div>
+    <div class="q"><p class="qt">Classify the critical points of \(f(x)=2x^3-9x^2+12x\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f'=6x^2-18x+12=6(x-1)(x-2)\). \(f''=12x-18\). \(f''(1)=-6&lt;0\): strict relative maximum at \(1\), \(f(1)=5\). \(f''(2)=6>0\): strict relative minimum at \(2\), \(f(2)=4\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f(x)=x^4\). What does the second derivative test say at \(0\)? What do you do?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(f'(0)=0\) and \(f''(0)=0\), so it is inconclusive. Use the first derivative test: \(f'=4x^3&lt;0\) for \(x&lt;0\) and \(>0\) for \(x>0\). So \(0\) is an absolute minimum.</p></div></details></div>
+    <div class="q"><p class="qt">Where does the proof use that \(f''\) is continuous?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>To get a whole interval around \(x_0\) on which \(f''>0\). The unknown point \(c\) then lies in that interval, so \(f''(c)>0\).</p></div></details></div>
+    <div class="q"><p class="qt">Why does the conclusion say "strict"?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Taylor gives \(f(x)-f(x_0)=\tfrac{f''(c)}2(x-x_0)^2>0\), a strict inequality, for \(x\ne x_0\).</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="properties" data-wk="Extra" data-title="Properties (probably later)" data-track="1">
+  <p class="wk">Extra · from your handwritten notes</p>
+  <h2>Properties of the integral</h2>
+  <p>These pages are in your handwritten notes but the Week 7 to 9 files do not cover them. Read them last, and skip them if your lecturer has not said they are examinable for Test 2.</p>
+  <div class="box thm" data-tag="Additivity">
+    <p>If \(a&lt;b&lt;c\), then \(f:[a,c]\to\R\) is Riemann integrable iff \(f\) is integrable on \([a,b]\) and on \([b,c]\). In that case \(\int_a^cf=\int_a^bf+\int_b^cf\).</p>
+  </div>
+  <div class="box thm" data-tag="Linearity (scalar)">
+    <p>If \(f\in\mathcal R([a,b])\) and \(\alpha\in\R\), then \(\alpha f\in\mathcal R([a,b])\) and \(\int_a^b\alpha f=\alpha\int_a^bf\).</p>
+  </div>
+  <p>The proof splits into cases. Your notes tell you the exam may ask the case \(\alpha=-1\).</p>
+  <div class="box ex" data-tag="Worked proof: α = −1">
+    <ol class="steps">
+      <li>On each piece, \(\sup\{-f(x)\}=-\inf\{f(x)\}\). So \(U(-f,P)=-L(f,P)\).</li>
+      <li>Then \(\upint(-f)=\inf\{U(-f,P)\}=\inf\{-L(f,P)\}=-\sup\{L(f,P)\}=-\lowint f\).</li>
+      <li>Since \(f\) is integrable, \(\lowint f=\int_a^bf\). So \(\upint(-f)=-\int_a^bf\).</li>
+      <li>Likewise \(\lowint(-f)=-\upint f=-\int_a^bf\). Upper and lower agree, so \(-f\) is integrable and \(\int_a^b(-f)=-\int_a^bf\).</li>
+    </ol>
+    <p>For \(\alpha\ge0\) the same idea gives \(U(\alpha f,P)=\alpha U(f,P)\), because a positive constant passes through the sup.</p>
+  </div>
+  <div class="box thm" data-tag="Sum and monotonicity">
+    <p>If \(f,g\) are bounded, then \(\upint(f+g)\le\upint f+\upint g\) and \(\lowint(f+g)\ge\lowint f+\lowint g\). If \(f,g\in\mathcal R([a,b])\), then \(f+g\in\mathcal R([a,b])\) and \(\int(f+g)=\int f+\int g\). If \(f\le g\) then \(\int f\le\int g\).</p>
+  </div>
+  <h3>Check yourself</h3>
+  <div class="qs">
+    <div class="q"><p class="qt">\(\int_0^1f=2\) and \(\int_1^3f=5\). Find \(\int_0^3f\) and \(\int_0^3 2f\).</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>Additivity: \(\int_0^3f=7\). Linearity: \(\int_0^32f=14\).</p></div></details></div>
+    <div class="q"><p class="qt">\(f\le g\) on \([a,b]\), both integrable, \(\int f=3\). What can you say about \(\int g\)?</p>
+      <details class="a"><summary>Show answer</summary><div class="ans"><p>\(\int g\ge3\), by monotonicity.</p></div></details></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<!-- ============ REVIEW ============ -->
+<section class="topic" id="recall" data-wk="Review" data-title="Recall drills" data-track="1">
+  <p class="wk">Review</p>
+  <h2>Recall drills</h2>
+  <p>There is no appendix in the test. Read the prompt, say the statement out loud or write it, then open it to check. Tick it off only when your version has every quantifier and condition.</p>
+  <details class="drill"><summary>Define a partition of \([a,b]\) and \(\Delta x_i\).</summary><div><p>A finite set \(P=\{x_0,\dots,x_n\}\) with \(a=x_0&lt;x_1&lt;\dots&lt;x_n=b\). \(\Delta x_i=x_i-x_{i-1}\).</p></div></details>
+  <details class="drill"><summary>Define \(m_i\), \(M_i\), \(L(P,f)\), \(U(P,f)\).</summary><div><p>For bounded \(f:[a,b]\to\R\): \(m_i=\inf\{f(x):x_{i-1}\le x\le x_i\}\), \(M_i=\sup\{\dots\}\). \(L(P,f)=\sum m_i\Delta x_i\), \(U(P,f)=\sum M_i\Delta x_i\).</p></div></details>
+  <details class="drill"><summary>State the bounds \(m(b-a)\le L\le U\le M(b-a)\) precisely.</summary><div><p>Let \(f:[a,b]\to\R\) be bounded with \(m\le f(x)\le M\) for all \(x\in[a,b]\). Then for every partition \(P\), \(m(b-a)\le L(P,f)\le U(P,f)\le M(b-a)\).</p></div></details>
+  <details class="drill"><summary>Define the lower and upper Darboux integrals.</summary><div><p>\(\lowint f=\sup\{L(P,f):P\text{ a partition of }[a,b]\}\). \(\upint f=\inf\{U(P,f):P\text{ a partition of }[a,b]\}\).</p></div></details>
+  <details class="drill"><summary>Define a refinement. State what refining does to \(L\) and \(U\).</summary><div><p>\(\tilde P\) is a refinement of \(P\) if \(P\subseteq\tilde P\). Then \(L(P,f)\le L(\tilde P,f)\) and \(U(\tilde P,f)\le U(P,f)\).</p></div></details>
+  <details class="drill"><summary>Define Riemann integrable and \(\int_a^bf\).</summary><div><p>A bounded \(f:[a,b]\to\R\) is Riemann integrable if \(\lowint f=\upint f\). The common value is \(\int_a^bf\).</p></div></details>
+  <details class="drill"><summary>State Riemann's integrability condition.</summary><div><p>Let \(f:[a,b]\to\R\) be bounded. \(f\) is Riemann integrable iff for every \(\varepsilon>0\) there exists a partition \(P\) of \([a,b]\) with \(U(P,f)-L(P,f)&lt;\varepsilon\).</p></div></details>
+  <details class="drill"><summary>What is \(\int_a^bc\,dx\), and why?</summary><div><p>\(c(b-a)\). Every \(m_i=M_i=c\), so every \(L=U=c(b-a)\).</p></div></details>
+  <details class="drill"><summary>State Darboux's theorem.</summary><div><p>Let \(f:[a,b]\to\R\) be differentiable. If \(f'(a)&lt;y&lt;f'(b)\) or \(f'(a)>y>f'(b)\), then there is \(c\in(a,b)\) with \(f'(c)=y\).</p></div></details>
+  <details class="drill"><summary>State the first derivative test.</summary><div><p>\(f:(a,b)\to\R\) continuous, \(c\in(a,b)\), \(f\) differentiable on \((a,c)\) and \((c,b)\). (i) \(f'\le0\) on \((a,c)\) and \(f'\ge0\) on \((c,b)\) gives an absolute minimum at \(c\). (ii) \(f'\ge0\) on \((a,c)\) and \(f'\le0\) on \((c,b)\) gives an absolute maximum at \(c\).</p></div></details>
+  <details class="drill"><summary>Define the \(n\)th order Taylor polynomial.</summary><div><p>\(P_n^{x_0}(x)=\sum_{k=0}^n\dfrac{f^{(k)}(x_0)}{k!}(x-x_0)^k\).</p></div></details>
+  <details class="drill"><summary>State Taylor's theorem.</summary><div><p>\(f:[a,b]\to\R\) with \(n\) continuous derivatives on \([a,b]\) and \(f^{(n+1)}\) existing on \((a,b)\). For distinct \(x_0,x\in[a,b]\) there is \(c\) between them with \(f(x)=P_n^{x_0}(x)+\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}\).</p></div></details>
+  <details class="drill"><summary>Define strict relative minimum, and state the second derivative test.</summary><div><p>\(f(x_0)\) is a strict relative minimum if there is \(\delta>0\) with \(f(x)>f(x_0)\) for all \(x\in(x_0-\delta,x_0+\delta)\), \(x\ne x_0\). Test: \(f:(a,b)\to\R\) twice continuously differentiable, \(f'(x_0)=0\), \(f''(x_0)>0\) gives a strict relative minimum at \(x_0\).</p></div></details>
+  <details class="drill"><summary>Which theorem says a continuous function on \([a,b]\) attains a max and a min? Which gives a zero from a sign change?</summary><div><p>Extreme Value Theorem (minimum-maximum theorem). Bolzano's Intermediate Value Theorem.</p></div></details>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+<section class="topic" id="mock" data-wk="Review" data-title="Mock test" data-track="1">
+  <p class="wk">Review · 15 marks · 30 minutes</p>
+  <h2>Mock test</h2>
+  <p>Same shape as Test 1: short answers, no appendix. Start the timer, write your answers on paper, then open the marking notes.</p>
+  <div class="xp">
+    <div class="ctl">
+      <span class="timer" id="timer">30:00</span>
+      <button class="btn" type="button" id="tstart">Start</button>
+      <button class="btn ghost" type="button" id="treset">Reset</button>
+    </div>
+    <p class="msg" id="tmsg">Timer is idle.</p>
+  </div>
+  <div class="qs">
+    <div class="q"><p class="qt"><span class="mk">[2]</span> State precisely what it means for \(f:[a,b]\to\R\) to be Riemann integrable.</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>\(f\) is bounded, and \(\lowint f=\upint f\) (sup of lower sums equals inf of upper sums over all partitions). One mark for "bounded", one for the equality with sup and inf correct (lower uses sup, upper uses inf).</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[3]</span> Let \(f(x)=x+1\) on \([0,2]\) and \(P=\{0,\tfrac12,1,2\}\). Compute \(L(P,f)\) and \(U(P,f)\).</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>\(f\) is increasing. Widths: \(\tfrac12,\tfrac12,1\). \(m_i=1,\tfrac32,2\). \(M_i=\tfrac32,2,3\).</p>
+      <p>\(L=1\cdot\tfrac12+\tfrac32\cdot\tfrac12+2\cdot1=\tfrac12+\tfrac34+2=\tfrac{13}4\). \(U=\tfrac32\cdot\tfrac12+2\cdot\tfrac12+3\cdot1=\tfrac34+1+3=\tfrac{19}4\).</p>
+      <p>Check: \(\int_0^2(x+1)\,dx=4\), and \(\tfrac{13}4\le4\le\tfrac{19}4\). &#10003;</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[2]</span> State Riemann's integrability condition.</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>A bounded \(f:[a,b]\to\R\) is Riemann integrable iff for every \(\varepsilon>0\) there is a partition \(P\) with \(U(P,f)-L(P,f)&lt;\varepsilon\). One mark for "bounded" and "if and only if", one for the quantifiers.</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[3]</span> Let \(f(x)=x\) on \([0,1]\) and \(P_n\) the uniform partition into \(n\) pieces. Show \(U(P_n,f)-L(P_n,f)=\tfrac1n\), and use it to prove \(f\) is Riemann integrable.</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>\(f\) is increasing, \(\Delta x_i=\tfrac1n\), \(m_i=\tfrac{i-1}n\), \(M_i=\tfrac in\). \(U-L=\tfrac1n\sum\left(\tfrac in-\tfrac{i-1}n\right)=\tfrac1n\cdot\tfrac nn=\tfrac1n\) (telescoping).</p>
+      <p>Given \(\varepsilon>0\), pick \(n>\tfrac1\varepsilon\) (Archimedean). Then \(U-L&lt;\varepsilon\), so \(f\) is Riemann integrable by Riemann's integrability condition.</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[1]</span> Name the theorem that says: if \(f:[a,b]\to\R\) is differentiable and \(y\) lies between \(f'(a)\) and \(f'(b)\), then \(f'(c)=y\) for some \(c\in(a,b)\).</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>Darboux's theorem. Not Bolzano's IVT: that one is about the values of \(f\), not \(f'\).</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[2]</span> Find the second order Taylor polynomial \(P_2^{0}\) of \(f(x)=e^{2x}\).</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>\(f(0)=1\), \(f'(x)=2e^{2x}\) gives \(f'(0)=2\), \(f''(x)=4e^{2x}\) gives \(f''(0)=4\). \(P_2^0(x)=1+2x+\dfrac{4}{2}x^2=1+2x+2x^2\).</p></div></details></div>
+    <div class="q"><p class="qt"><span class="mk">[2]</span> Let \(f(x)=x^3-6x^2\). Use the second derivative test to classify the critical points.</p>
+      <details class="a"><summary>Marking notes</summary><div class="ans"><p>\(f'(x)=3x^2-12x=3x(x-4)\), critical points \(0\) and \(4\). \(f''(x)=6x-12\). \(f''(0)=-12&lt;0\): strict relative maximum at \(0\). \(f''(4)=12>0\): strict relative minimum at \(4\).</p></div></details></div>
+  </div>
+  <p class="msg">Score: 15 marks. Below 11, go back to the topics where you lost marks and redo their "Check yourself" questions.</p>
+  <div class="done-row"><button class="btn done-btn" type="button" aria-pressed="false">Mark as done</button></div>
+</section>
+
+</main>
+</div>
+<footer><p>Built from your Week 7, 8 and 9 notes, your handwritten pages and the Test 1 sample. Worked numbers were recomputed. Where your handwritten numbers differ, the page says so.</p></footer>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  /* ---------- hero art: lower and upper rectangles ---------- */
+  (function () {
+    var svg = $('#hero'); if (!svg) return;
+    var n = 12, W = 340, H = 150, x0 = 8, x1 = 332, base = 138, top = 14;
+    var g = function (t) { return 0.12 + 0.88 * t * t; };
+    var out = '<line x1="4" y1="' + base + '" x2="336" y2="' + base + '" style="stroke:var(--ink2)" stroke-width="1"/>';
+    var w = (x1 - x0) / n, i, l, r, mL, mU;
+    for (i = 0; i < n; i++) {
+      l = i / n; r = (i + 1) / n; mL = g(l); mU = g(r);
+      var yU = base - mU * (base - top), yL = base - mL * (base - top);
+      out += '<rect x="' + (x0 + i * w).toFixed(1) + '" y="' + yU.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + (base - yU).toFixed(1) + '" style="fill:var(--upper)" fill-opacity=".18" style="stroke:var(--upper)" stroke-width="1"/>';
+      out += '<rect x="' + (x0 + i * w).toFixed(1) + '" y="' + yL.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + (base - yL).toFixed(1) + '" style="fill:var(--lower)" fill-opacity=".38" style="stroke:var(--lower)" stroke-width="1"/>';
+    }
+    var d = '';
+    for (i = 0; i <= 60; i++) { var t = i / 60; d += (i ? 'L' : 'M') + (x0 + t * (x1 - x0)).toFixed(1) + ' ' + (base - g(t) * (base - top)).toFixed(1); }
+    out += '<path d="' + d + '" fill="none" style="stroke:var(--ink)" stroke-width="2.2"/>';
+    svg.innerHTML = out;
+  })();
+
+  /* ---------- countdown ---------- */
+  (function () {
+    var el = $('#count'); if (!el) return;
+    var t = new Date('2026-10-14T15:30:00+02:00').getTime(), now = Date.now();
+    var days = Math.ceil((t - now) / 86400000);
+    if (t - now <= 0) el.textContent = 'Test time has passed';
+    else if (days <= 1) el.textContent = 'Test is today or tomorrow';
+    else el.textContent = 'Test in ' + days + ' days';
+  })();
+
+  /* ---------- theme toggle ---------- */
+  (function () {
+    var b = $('#theme'), root = document.documentElement;
+    var modes = ['auto', 'light', 'dark'];
+    var cur = store.get('m2016-theme') || 'auto';
+    function apply() {
+      if (cur === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', cur);
+      b.textContent = 'Theme: ' + cur;
+    }
+    b.addEventListener('click', function () { cur = modes[(modes.indexOf(cur) + 1) % 3]; store.set('m2016-theme', cur); apply(); });
+    apply();
+  })();
+
+  /* ---------- table of contents, scrollspy, progress ---------- */
+  var topics = $$('section.topic');
+  var toc = $('#toc'), last = '';
+  topics.forEach(function (s) {
+    var wk = s.dataset.wk;
+    if (wk !== last) { var h = document.createElement('p'); h.className = 'navwk'; h.textContent = wk; toc.appendChild(h); last = wk; }
+    var a = document.createElement('a'); a.href = '#' + s.id; a.textContent = s.dataset.title; a.dataset.for = s.id;
+    toc.appendChild(a);
+  });
+  var navd = $('#navd');
+  function sizeNav() { if (window.matchMedia('(min-width: 960px)').matches) navd.open = true; }
+  sizeNav(); window.addEventListener('resize', sizeNav);
+  toc.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A' && !window.matchMedia('(min-width: 960px)').matches) navd.open = false;
+  });
+
+  var doneSet = {};
+  try { doneSet = JSON.parse(store.get('m2016-done') || '{}') || {}; } catch (e) { doneSet = {}; }
+  var tracked = topics.filter(function (s) { return s.dataset.track; });
+  function paintProgress() {
+    var n = 0;
+    tracked.forEach(function (s) {
+      var on = !!doneSet[s.id]; if (on) n++;
+      var a = $('#toc a[data-for="' + s.id + '"]'); if (a) a.classList.toggle('done', on);
+      var b = $('.done-btn', s); if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? 'Marked as done' : 'Mark as done'; }
+    });
+    $('#prog').textContent = n + ' of ' + tracked.length + ' topics marked done';
+    $('#barfill').style.width = (100 * n / tracked.length) + '%';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.done-btn') : null;
+    if (!b) return;
+    var s = b.closest('section.topic');
+    if (doneSet[s.id]) delete doneSet[s.id]; else doneSet[s.id] = 1;
+    store.set('m2016-done', JSON.stringify(doneSet)); paintProgress();
+  });
+  paintProgress();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (en.isIntersecting) {
+          $$('#toc a').forEach(function (a) { a.classList.toggle('cur', a.dataset.for === en.target.id); });
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    topics.forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- cloze reveal ---------- */
+  document.addEventListener('click', function (e) {
+    var cz = e.target.closest ? e.target.closest('.cz') : null;
+    if (cz) { cz.classList.toggle('on'); return; }
+    var all = e.target.closest ? e.target.closest('[data-cz="all"]') : null;
+    if (all) {
+      var box = all.closest('.proof'), cs = $$('.cz', box);
+      var anyHidden = cs.some(function (c) { return !c.classList.contains('on'); });
+      cs.forEach(function (c) { c.classList.toggle('on', anyHidden); });
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('cz')) {
+      e.preventDefault(); e.target.classList.toggle('on');
+    }
+  });
+
+  /* ---------- Darboux sum explorer ---------- */
+  (function () {
+    var sel = $('#fn'); if (!sel) return;
+    var nr = $('#nrange'), er = $('#erange'), dbl = $('#dbl'), svg = $('#plot');
+    var FN = {
+      sq: { a: 0, b: 1, f: function (x) { return x * x - 1; }, inc: true, exact: -2 / 3, exactTxt: '-2/3 = -0.6667', y0: -1.12, y1: 0.12, mode: 'n' },
+      rec: { a: 0, b: 2, f: function (x) { return 1 / (1 + x); }, inc: false, exact: Math.log(3), exactTxt: 'ln 3 = 1.0986', y0: -0.06, y1: 1.08, mode: 'n' },
+      step: { a: 0, b: 2, f: function (x) { return x < 1 ? 1 : (x === 1 ? 0.5 : 0); }, inc: false, exact: 1, exactTxt: '1', y0: -0.08, y1: 1.12, mode: 'eps' }
+    };
+    var prev = null;
+    function X(fn, x) { return 40 + (x - fn.a) / (fn.b - fn.a) * 580; }
+    function Y(fn, y) { return 296 - (y - fn.y0) / (fn.y1 - fn.y0) * 262; }
+    function fmt(v) { return (Math.abs(v) < 5e-5 ? 0 : v).toFixed(4); }
+    function part(fn, n, eps) {
+      if (fn.mode === 'eps') return [fn.a, 1 - eps, 1 + eps, fn.b];
+      var P = [], i; for (i = 0; i <= n; i++) P.push(fn.a + i * (fn.b - fn.a) / n); return P;
+    }
+    function draw() {
+      var fn = FN[sel.value], n = +nr.value, eps = +er.value;
+      $('#nwrap').hidden = fn.mode === 'eps'; $('#ewrap').hidden = fn.mode !== 'eps';
+      dbl.hidden = fn.mode === 'eps';
+      $('#nval').textContent = n; $('#eval').textContent = eps.toFixed(2);
+      var P = part(fn, n, eps), L = 0, U = 0, rects = [], i;
+      for (i = 1; i < P.length; i++) {
+        var l = P[i - 1], r = P[i], dx = r - l, fl = fn.f(l), fr = fn.f(r);
+        var m = fn.inc ? fl : fr, M = fn.inc ? fr : fl;
+        L += m * dx; U += M * dx; rects.push([l, r, m, M]);
+      }
+      var out = '', zero = Y(fn, 0);
+      rects.forEach(function (q) {
+        var x = X(fn, q[0]), w = X(fn, q[1]) - x, yM = Y(fn, q[3]);
+        out += '<rect class="ru" x="' + x.toFixed(1) + '" y="' + Math.min(zero, yM).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + Math.abs(yM - zero).toFixed(1) + '"/>';
+      });
+      rects.forEach(function (q) {
+        var x = X(fn, q[0]), w = X(fn, q[1]) - x, ym = Y(fn, q[2]);
+        out += '<rect class="rl" x="' + x.toFixed(1) + '" y="' + Math.min(zero, ym).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + Math.abs(ym - zero).toFixed(1) + '"/>';
+      });
+      out += '<line class="ax" x1="30" y1="' + zero.toFixed(1) + '" x2="632" y2="' + zero.toFixed(1) + '"/>';
+      if (fn.mode === 'eps') {
+        out += '<path class="cv" d="M' + X(fn, 0) + ' ' + Y(fn, 1) + 'L' + X(fn, 1) + ' ' + Y(fn, 1) + '"/>';
+        out += '<path class="cv" d="M' + X(fn, 1) + ' ' + Y(fn, 0) + 'L' + X(fn, 2) + ' ' + Y(fn, 0) + '"/>';
+        out += '<circle class="op" cx="' + X(fn, 1) + '" cy="' + Y(fn, 1) + '" r="4"/><circle class="op" cx="' + X(fn, 1) + '" cy="' + Y(fn, 0) + '" r="4"/><circle class="pt" cx="' + X(fn, 1) + '" cy="' + Y(fn, 0.5) + '" r="4"/>';
+      } else {
+        var d = '', k; for (k = 0; k <= 160; k++) { var xx = fn.a + k / 160 * (fn.b - fn.a); d += (k ? 'L' : 'M') + X(fn, xx).toFixed(1) + ' ' + Y(fn, fn.f(xx)).toFixed(1); }
+        out += '<path class="cv" d="' + d + '"/>';
+      }
+      var ticks = fn.mode === 'eps' ? [[0, '0'], [1 - eps, '1-ε'], [1 + eps, '1+ε'], [2, '2']] : (fn.b === 1 ? [[0, '0'], [0.5, '0.5'], [1, '1']] : [[0, '0'], [1, '1'], [2, '2']]);
+      ticks.forEach(function (t) {
+        out += '<line class="ax" x1="' + X(fn, t[0]).toFixed(1) + '" y1="304" x2="' + X(fn, t[0]).toFixed(1) + '" y2="310"/><text x="' + (X(fn, t[0]) - 8).toFixed(1) + '" y="324">' + t[1] + '</text>';
+      });
+      svg.innerHTML = out;
+      var pred = fn.mode === 'eps' ? 2 * eps : (fn.b - fn.a) * Math.abs(fn.f(fn.b) - fn.f(fn.a)) / n;
+      $('#rL').textContent = fmt(L); $('#rU').textContent = fmt(U); $('#rD').textContent = fmt(U - L);
+      $('#rP').textContent = fmt(pred); $('#rI').textContent = fn.exactTxt;
+      var ok = L <= fn.exact + 1e-9 && fn.exact <= U + 1e-9;
+      var msg = ok ? 'L ≤ integral ≤ U holds.' : 'Check: L ≤ integral ≤ U should always hold.';
+      if (prev && prev.kind === fn.mode + sel.value) {
+        msg = 'Doubling n refined the partition. L went from ' + fmt(prev.L) + ' to ' + fmt(L) + ' (up). U went from ' + fmt(prev.U) + ' to ' + fmt(U) + ' (down). ' + msg;
+      }
+      $('#xmsg').textContent = msg;
+      draw.last = { L: L, U: U };
+    }
+    sel.addEventListener('change', function () { prev = null; draw(); });
+    nr.addEventListener('input', function () { prev = null; draw(); });
+    er.addEventListener('input', function () { prev = null; draw(); });
+    dbl.addEventListener('click', function () {
+      var n = +nr.value;
+      if (n >= 64) { $('#xmsg').textContent = 'n is already at its maximum of 64.'; return; }
+      prev = { L: draw.last.L, U: draw.last.U, kind: FN[sel.value].mode + sel.value };
+      nr.value = Math.min(64, n * 2); draw();
+    });
+    draw();
+  })();
+
+  /* ---------- mock test timer ---------- */
+  (function () {
+    var t = $('#timer'); if (!t) return;
+    var total = 30 * 60, left = total, iv = null;
+    function show() { var m = Math.floor(left / 60), s = left % 60; t.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s; }
+    $('#tstart').addEventListener('click', function () {
+      if (iv) return;
+      $('#tmsg').textContent = 'Running. Write your answers on paper.';
+      iv = setInterval(function () {
+        left--; show();
+        if (left <= 0) { clearInterval(iv); iv = null; $('#tmsg').textContent = 'Time. Stop writing and open the marking notes.'; }
+      }, 1000);
+    });
+    $('#treset').addEventListener('click', function () {
+      if (iv) { clearInterval(iv); iv = null; }
+      left = total; show(); $('#tmsg').textContent = 'Timer is idle.';
+    });
+    show();
+  })();
+})();
+</script>
+
+</body>
+</html>
